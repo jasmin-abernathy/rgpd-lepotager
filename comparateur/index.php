@@ -21,7 +21,7 @@ foreach (['ref', 'source', 'from', 'canal'] as $k) {
 }
 if (!$ref) {
     $host = strtolower((string)($_SERVER['HTTP_HOST'] ?? ''));
-    $ref = str_contains($host, 'prestadmin') ? 'prestadmin' : 'potager';
+    $ref = str_contains($host, 'prestadmin') ? 'prestadmin' : 'commun';
 }
 $q = $ref === 'commun' ? '' : '?ref=' . rawurlencode($ref);
 $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le Potager' : 'Commun');
