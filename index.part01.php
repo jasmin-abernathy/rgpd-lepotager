@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 $config = require __DIR__ . '/config.php';
+require_once __DIR__ . '/includes/site-header.php';
 
 $allowedRefs = ['prestadmin', 'potager', 'direct'];
 $ref = strtolower((string)($_GET['ref'] ?? 'direct'));
@@ -50,32 +51,12 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/style.css?v=2">
     <link rel="stylesheet" href="assets/themes.css?v=21">
-    <link rel="stylesheet" href="assets/header-sync.css?v=1">
+    <link rel="stylesheet" href="assets/site-header.css?v=1">
 </head>
 <body class="theme-<?= e($ref) ?>" data-ref="<?= e($ref) ?>">
 <a class="skip-link" href="#main">Aller au contenu</a>
 
-<header class="site-header">
-    <div class="shell nav">
-        <a class="brand brand-rgpd" href="./?ref=<?= e($ref) ?>" aria-label="Accueil RGPD au propre">
-            <span class="brand-mark ptm-brand-mark" aria-hidden="true"></span>
-            <span><strong>RGPD au propre</strong><small>organisation × numérique</small></span>
-        </a>
-
-        <div class="co-brand" aria-label="Les deux prestataires">
-            <a class="provider provider-admin" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer"><span aria-hidden="true"></span>Prestadmin ↗</a>
-            <b aria-hidden="true">×</b>
-            <a class="provider provider-potager" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌁</span>Le Potager du Web ↗</a>
-        </div>
-
-        <nav aria-label="Navigation principale">
-            <a href="#methode">Méthode</a>
-            <a href="#offres">Tarifs</a>
-            <a href="<?= e($comparateurHref) ?>">Comparateur</a>
-            <button class="button button-small js-open-diagnostic" type="button">Diagnostic rapide</button>
-        </nav>
-    </div>
-</header>
+<?php rgpd_render_header($ref, 'home', true); ?>
 
 <main id="main">
     <section class="hero">
@@ -99,10 +80,9 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
                     Sur WordPress, Privacy Tracker Manager (PTM) peut être utilisé <strong>lors des revues planifiées depuis l’administration du site</strong> — sans remontée distante automatique dans sa version actuelle.
                 </p>
                 <div class="hero-actions">
-                    <button class="button js-open-diagnostic" type="button">Faire le diagnostic rapide</button>
                     <a class="button button-ghost" href="#offres">Voir les tarifs</a>
                 </div>
-                <p class="microcopy">Environ 3 minutes · aucune donnée envoyée avant votre validation finale.</p>
+                <p class="microcopy">Le diagnostic rapide est accessible directement depuis le header · environ 3 minutes · aucune donnée envoyée avant votre validation finale.</p>
             </div>
 
             <aside class="origin-card dual-card" aria-label="Répartition de l'accompagnement">

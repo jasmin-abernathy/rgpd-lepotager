@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once dirname(__DIR__) . '/includes/site-header.php';
+
 function rref(?string $v): string {
     $v = strtolower(trim((string)$v));
     if (str_contains($v, 'prestadmin')) return 'prestadmin';
@@ -19,7 +21,7 @@ foreach (['ref', 'source', 'from', 'canal'] as $k) {
 }
 if (!$ref) {
     $host = strtolower((string)($_SERVER['HTTP_HOST'] ?? ''));
-    $ref = str_contains($host, 'prestadmin') ? 'prestadmin' : 'potager';
+    $ref = str_contains($host, 'prestadmin') ? 'prestadmin' : 'commun';
 }
 $q = $ref === 'commun' ? '' : '?ref=' . rawurlencode($ref);
 $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le Potager' : 'Commun');
@@ -27,21 +29,10 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Comparateur des tarifs RGPD — Prestadmin × Le Potager</title><meta name="description" content="Tarifs publics observés pour des prestations RGPD, avec moyennes, médianes et sources.">
 <link rel="stylesheet" href="assets/style.css?v=stable-1746-plus">
+<link rel="stylesheet" href="../assets/site-header.css?v=1">
 </head>
 <body class="theme-<?= htmlspecialchars($ref, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
-<header class="site-header">
-  <div class="shell nav">
-    <a class="brand" href="/<?= htmlspecialchars($q, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
-      <b aria-hidden="true">R</b>
-      <span><strong>RGPD au propre</strong><small>organisation × numérique</small></span>
-    </a>
-    <nav aria-label="Navigation principale">
-      <a href="/<?= htmlspecialchars($q, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">Accueil</a>
-      <a class="active" href="./<?= htmlspecialchars($q, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">Comparateur</a>
-      <a class="cta" href="/<?= htmlspecialchars($q, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>#diagnostic"><span class="cta-full">Diagnostic rapide</span><span class="cta-short">Diagnostic</span></a>
-    </nav>
-  </div>
-</header>
+<?php rgpd_render_header($ref, 'comparateur', false); ?>
 <main>
 <section class="hero"><div class="shell hero-grid"><div>
 <div class="theme-chip" aria-label="Canal affiché"><span class="theme-dot" aria-hidden="true"></span><?= htmlspecialchars($themeLabel, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></div>
