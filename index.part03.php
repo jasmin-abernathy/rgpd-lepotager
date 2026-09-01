@@ -1,0 +1,98 @@
+
+            <p class="billing-note">
+                <strong>Vous voulez situer ces montants ?</strong> Consultez notre observatoire des tarifs RGPD publics : les moyennes et médianes sont calculées par type de prestation et de structure, avec les sources affichées clairement.
+                <a class="text-button" href="<?= e($comparateurHref) ?>">Comparer les tarifs observés →</a>
+            </p>
+
+            <p class="billing-note">
+                <strong>Facturation :</strong> l'offre est présentée comme un parcours commun, mais <a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> et <a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>
+                émettent chacun leur propre devis/facture pour leur partie. Le total affiché correspond au coût cumulé de l'accompagnement.
+            </p>
+        </div>
+    </section>
+
+    <section class="section wp-section ptm-corrected">
+        <div class="shell wp-grid">
+            <div class="ptm-copy">
+                <p class="eyebrow">WordPress uniquement · capacité actuelle</p>
+                <h2>Privacy Tracker Manager aide pendant les revues.<br><em>Il ne surveille pas le site à distance.</em></h2>
+                <p>
+                    Privacy Tracker Manager (PTM) est le plugin WordPress développé par
+                    <a class="provider-link potager-link-dark" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>.
+                    Il est installé dans le WordPress du client et consulté depuis son administration quand une revue est prévue.
+                </p>
+
+                <div class="ptm-status">
+                    <div class="ptm-status-ok"><b>✓ Aujourd’hui</b><span>Installation et configuration dans WordPress ; utilisation dans le back-office lors des contrôles prévus.</span></div>
+                    <div class="ptm-status-no"><b>× Pas encore</b><span>Pas de remontée automatique vers un tableau de bord externe, pas de surveillance automatique 24/7 par Privacy Tracker Manager, pas d’accès distant autonome fourni par le plugin.</span></div>
+                </div>
+
+                <p class="ptm-human"><strong>Les formules annuelles rémunèrent donc des revues et interventions humaines planifiées.</strong> Si une fonction distante est ajoutée plus tard, elle sera présentée comme une évolution distincte.</p>
+            </div>
+
+            <div class="ptm-card ptm-screen" aria-label="Schéma de fonctionnement actuel de Privacy Tracker Manager">
+                <div class="ptm-screen-top"><span></span><span></span><span></span><small>WordPress du client</small></div>
+                <div class="ptm-screen-body">
+                    <div class="ptm-sidebar"><span>Tableau de bord</span><span>Pages</span><span>Extensions</span><b>Privacy Tracker Manager</b></div>
+                    <div class="ptm-panel">
+                        <small>REVUE PLANIFIÉE</small><strong>Privacy Tracker Manager</strong>
+                        <i></i><i class="short"></i>
+                        <div class="ptm-local">Contrôle depuis l’administration WordPress</div>
+                        <div class="ptm-remote">× Aucune liaison distante automatique dans la version actuelle</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section disclaimer-section">
+        <div class="shell disclaimer">
+            <strong>Ce que nous faisons — et ce que nous ne prétendons pas faire.</strong>
+            <p>
+                L'accompagnement vise à organiser et mettre en œuvre une démarche de conformité dans votre activité et vos outils.
+                Il ne constitue pas une certification de conformité ni une consultation juridique.
+                Lorsqu'une situation exige une analyse juridique spécialisée, elle doit être traitée par un professionnel compétent.
+            </p>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="shell footer-grid">
+        <div>
+            <strong><a href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> × <a href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a></strong>
+            <p>Une offre commune, deux entreprises indépendantes.</p>
+        </div>
+        <div class="footer-links">
+            <a href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin ↗</a>
+            <a href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager ↗</a>
+            <a href="<?= e($comparateurHref) ?>">Comparateur des tarifs</a>
+            <a href="mentions-legales.php?ref=<?= e($ref) ?>">Mentions légales</a>
+            <a href="confidentialite.php?ref=<?= e($ref) ?>">Confidentialité</a>
+        </div>
+    </div>
+</footer>
+
+<div class="modal" id="diagnosticModal" hidden>
+    <div class="modal-backdrop js-close-diagnostic" aria-hidden="true"></div>
+    <section class="wizard" role="dialog" aria-modal="true" aria-labelledby="wizardTitle">
+        <button class="wizard-close js-close-diagnostic" type="button" aria-label="Fermer">×</button>
+
+        <div class="wizard-top">
+            <div>
+                <p class="eyebrow">Le Jardinier RGPD</p>
+                <h2 id="wizardTitle">Voyons ce qui mérite d'être vérifié.</h2>
+            </div>
+            <p class="wizard-counter" aria-live="polite"><span id="stepNumber">1</span>/5</p>
+        </div>
+
+        <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+        <form id="diagnosticForm" action="contact.php" method="post" novalidate>
+            <input type="hidden" name="source" value="<?= e($ref) ?>">
+            <input type="hidden" name="recommendation" id="recommendationField" value="">
+            <input type="hidden" name="summary" id="summaryField" value="">
+            <input type="hidden" name="started_at" id="startedAt" value="">
+            <div class="hp-field" aria-hidden="true">
+                <label>Votre site web <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+            </div>

@@ -1,0 +1,35 @@
+{
+  "user_agent": "RGPD-Tariff-Observer/1.0 (+https://rgpd.lepotager.org/comparateur/)",
+  "delay_ms": 1200,
+  "timeout_seconds": 15,
+  "rules": [
+    {
+      "url": "https://www.dataprivacy.pro/dpo-externe/",
+      "pattern": "tpe.{0,500}?([0-9][0-9\\s\\u00a0.]*)\\s*€\\s*/\\s*mois.{0,1000}?pme.{0,500}?([0-9][0-9\\s\\u00a0.]*)\\s*€\\s*/\\s*mois",
+      "updates": [
+        {"id": "dp-dpo-tpe", "capture": 1},
+        {"id": "dp-dpo-pme", "capture": 2}
+      ]
+    },
+    {
+      "url": "https://boscop.fr/audit-rgpd-site-web/",
+      "pattern": "(?:tarif|à partir de).{0,160}?([0-9][0-9\\s\\u00a0.]*)\\s*€\\s*ht",
+      "updates": [{"id": "boscop-web", "capture": 1}]
+    },
+    {
+      "url": "https://rgpd-avocat-mizrahi.com/",
+      "pattern": "audit\\s+rgpd.{0,500}?([0-9][0-9\\s\\u00a0.]*)\\s*€\\s*ht",
+      "updates": [{"id": "mizrahi-audit", "capture": 1}]
+    },
+    {
+      "url": "https://codpo.fr/dpo-externe-tarif/",
+      "pattern": "(?:dès|à partir de).{0,80}?([0-9][0-9\\s\\u00a0.]*)\\s*€",
+      "updates": [{"id": "codpo-dpo", "capture": 1}]
+    },
+    {
+      "url": "https://www.lexagone.fr/tarifs/",
+      "pattern": "(?:dès|à partir de).{0,80}?([0-9][0-9\\s\\u00a0.]*)\\s*€\\s*ht.{0,60}?mois",
+      "updates": [{"id": "lexagone-dpo", "capture": 1}]
+    }
+  ]
+}

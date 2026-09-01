@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Privacy Tracker Manager">
+  <defs>
+    <linearGradient id="g" x1="90" y1="70" x2="390" y2="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#315f49"/>
+      <stop offset="1" stop-color="#4d8a68"/>
+    </linearGradient>
+  </defs>
+  <path d="M256 48c52 37 111 52 168 59v119c0 113-64 194-168 238C152 420 88 339 88 226V107c57-7 116-22 168-59Z"
+        fill="#f6fbf7" stroke="url(#g)" stroke-width="26" stroke-linejoin="round"/>
+  <path d="M256 133v170" fill="none" stroke="#315f49" stroke-width="22" stroke-linecap="round"/>
+  <path d="M188 171h136" fill="none" stroke="#315f49" stroke-width="20" stroke-linecap="round"/>
+  <path d="M206 171l-45 76h90l-45-76Zm100 0-45 76h90l-45-76Z"
+        fill="none" stroke="#315f49" stroke-width="15" stroke-linejoin="round"/>
+  <path d="M169 248c7 24 22 36 37 36s30-12 37-36M269 248c7 24 22 36 37 36s30-12 37-36"
+        fill="none" stroke="#315f49" stroke-width="15" stroke-linecap="round"/>
+  <path d="M203 323h106" fill="none" stroke="#315f49" stroke-width="21" stroke-linecap="round"/>
+  <path d="M305 337c49-9 88 12 103 45-46 10-84-7-103-45Z" fill="#63a778"/>
+  <path d="M306 338c26 13 50 26 74 47" fill="none" stroke="#315f49" stroke-width="10" stroke-linecap="round"/>
+</svg>

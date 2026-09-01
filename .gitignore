@@ -1,0 +1,27 @@
+# Secrets / local credentials
+.env
+.env.*
+!.env.example
+cron/private/discovery-admin.php
+*.pem
+*.key
+
+# Runtime comparator data (must stay local on production)
+cron/private/candidates.json
+cron/private/observations-private.json
+comparateur/data/sources.json
+cron/last-run.json
+cron/discovery-last-run.json
+
+# Temporary / logs / backups
+*.tmp
+*.log
+*.sql
+*.sql.gz
+*.zip
+*.tar
+*.tar.gz
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

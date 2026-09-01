@@ -1,0 +1,279 @@
+/*
+ * PATCH VISUEL UNIQUEMENT — index général RGPD
+ * Aligne le haut de page des variantes ?ref=potager / ?ref=prestadmin
+ * sur celui du comparateur. Aucun style sous le header n'est modifié.
+ */
+
+/* Le "R" devient le pictogramme PTM, y compris sur l'accès commun. */
+.site-header .brand-mark.ptm-brand-mark{
+    display:block;
+    width:48px;
+    height:48px;
+    min-width:48px;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent url("ptm-logo.svg") center/contain no-repeat !important;
+    box-shadow:none !important;
+    color:transparent !important;
+    overflow:hidden;
+}
+
+/* On ne touche pas à la version commune hors remplacement du pictogramme. */
+body.theme-potager .site-header,
+body.theme-prestadmin .site-header{
+    padding:0 !important;
+    border:0 !important;
+    box-shadow:none !important;
+}
+
+body.theme-potager .site-header{
+    background:linear-gradient(90deg,#23483a 0%,#23483a 72%,#8b2f43 72%,#8b2f43 100%) !important;
+}
+body.theme-prestadmin .site-header{
+    background:linear-gradient(90deg,#943149 0%,#943149 72%,#274b3a 72%,#274b3a 100%) !important;
+}
+
+body.theme-potager .site-header .nav,
+body.theme-prestadmin .site-header .nav{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    align-items:center !important;
+    gap:0 28px !important;
+    min-height:0 !important;
+    padding-top:18px !important;
+    padding-bottom:0 !important;
+}
+
+/* Marque principale : même hiérarchie visuelle que sur le comparateur. */
+body.theme-potager .brand-rgpd,
+body.theme-prestadmin .brand-rgpd{
+    display:flex !important;
+    align-items:center !important;
+    gap:13px !important;
+    min-width:0 !important;
+    color:#fff !important;
+    text-decoration:none !important;
+    padding:2px 0 17px !important;
+}
+
+body.theme-potager .brand-rgpd strong,
+body.theme-prestadmin .brand-rgpd strong,
+body.theme-potager .brand-rgpd small,
+body.theme-prestadmin .brand-rgpd small{
+    display:block !important;
+    color:#fff !important;
+}
+
+body.theme-potager .brand-rgpd strong,
+body.theme-prestadmin .brand-rgpd strong{
+    font-size:0 !important;
+    line-height:1 !important;
+}
+body.theme-potager .brand-rgpd small,
+body.theme-prestadmin .brand-rgpd small{
+    font-size:0 !important;
+    margin-top:5px !important;
+    opacity:.9 !important;
+}
+
+/* Potager = identité principale à gauche. */
+body.theme-potager .brand-rgpd strong::after{
+    content:"Le Potager du Web";
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:1.7rem;
+    font-weight:800;
+    letter-spacing:-.02em;
+}
+body.theme-potager .brand-rgpd small::after{
+    content:"numérique responsable · open source";
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.78rem;
+    font-weight:600;
+    letter-spacing:.02em;
+}
+
+/* Prestadmin = identité principale à gauche. */
+body.theme-prestadmin .brand-rgpd strong::after{
+    content:"PRESTADMIN";
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:1.35rem;
+    font-weight:800;
+    letter-spacing:.13em;
+}
+body.theme-prestadmin .brand-rgpd small::after{
+    content:"ASSISTANCE & EFFICACITÉ";
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.14em;
+}
+
+/* Partenaire secondaire dans le bloc de droite, comme sur les comparateurs. */
+body.theme-potager .co-brand,
+body.theme-prestadmin .co-brand{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    min-width:250px !important;
+    padding:0 0 17px !important;
+}
+
+body.theme-potager .co-brand > b,
+body.theme-prestadmin .co-brand > b{
+    display:none !important;
+}
+
+body.theme-potager .co-brand .provider-potager,
+body.theme-prestadmin .co-brand .provider-admin{
+    display:none !important;
+}
+
+body.theme-potager .co-brand .provider-admin,
+body.theme-prestadmin .co-brand .provider-potager{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    min-height:44px !important;
+    padding:9px 15px !important;
+    border:0 !important;
+    border-radius:5px !important;
+    background:rgba(0,0,0,.13) !important;
+    box-shadow:none !important;
+    color:#fff !important;
+    text-decoration:none !important;
+    font-weight:800 !important;
+}
+
+body.theme-potager .co-brand .provider-admin{
+    font-family:Arial,Helvetica,sans-serif !important;
+    letter-spacing:.12em !important;
+    text-transform:uppercase !important;
+}
+
+body.theme-prestadmin .co-brand .provider-potager{
+    font-family:Georgia,"Times New Roman",serif !important;
+    letter-spacing:0 !important;
+    text-transform:none !important;
+    font-size:1.05rem !important;
+}
+
+/* La navigation existante est conservée mot pour mot, mais prend la barre claire du comparateur. */
+body.theme-potager .site-header .nav > nav,
+body.theme-prestadmin .site-header .nav > nav{
+    grid-column:1 / -1 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:26px !important;
+    width:auto !important;
+    margin-left:calc(50% - 50vw) !important;
+    margin-right:calc(50% - 50vw) !important;
+    padding:11px max(24px,calc((100vw - 1180px)/2)) !important;
+    border:0 !important;
+    box-shadow:0 1px 0 rgba(0,0,0,.06) inset !important;
+}
+
+body.theme-potager .site-header .nav > nav{
+    background:#eef4f0 !important;
+}
+body.theme-prestadmin .site-header .nav > nav{
+    background:#fbf0f3 !important;
+}
+
+body.theme-potager .site-header .nav > nav > a,
+body.theme-prestadmin .site-header .nav > nav > a{
+    color:#24312d !important;
+    text-decoration:none !important;
+    font-weight:700 !important;
+    opacity:.9 !important;
+}
+
+body.theme-potager .site-header .nav > nav > a:hover,
+body.theme-potager .site-header .nav > nav > a:focus-visible{
+    color:#23483a !important;
+}
+body.theme-prestadmin .site-header .nav > nav > a:hover,
+body.theme-prestadmin .site-header .nav > nav > a:focus-visible{
+    color:#943149 !important;
+}
+
+body.theme-potager .site-header .nav > nav .button,
+body.theme-prestadmin .site-header .nav > nav .button{
+    margin-left:auto !important;
+    color:#fff !important;
+    border:0 !important;
+    box-shadow:none !important;
+}
+body.theme-potager .site-header .nav > nav .button{
+    background:#2f5b48 !important;
+}
+body.theme-prestadmin .site-header .nav > nav .button{
+    background:#943149 !important;
+}
+
+/* Le pictogramme PTM reste clair sur les deux fonds, sans modifier le reste de la marque. */
+body.theme-potager .site-header .ptm-brand-mark,
+body.theme-prestadmin .site-header .ptm-brand-mark{
+    width:50px;
+    height:50px;
+    min-width:50px;
+    padding:4px;
+    border-radius:12px !important;
+    background-color:rgba(255,255,255,.94) !important;
+    background-image:url("ptm-logo.svg") !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important;
+    background-size:42px 42px !important;
+}
+
+@media (max-width:900px){
+    body.theme-potager .site-header,
+    body.theme-prestadmin .site-header{
+        background:#23483a !important;
+    }
+    body.theme-prestadmin .site-header{
+        background:#943149 !important;
+    }
+    body.theme-potager .site-header .nav,
+    body.theme-prestadmin .site-header .nav{
+        grid-template-columns:1fr auto !important;
+        gap:0 12px !important;
+        padding-top:12px !important;
+    }
+    body.theme-potager .co-brand,
+    body.theme-prestadmin .co-brand{
+        min-width:0 !important;
+    }
+    body.theme-potager .co-brand .provider-admin,
+    body.theme-prestadmin .co-brand .provider-potager{
+        min-width:0 !important;
+        padding:8px 10px !important;
+        font-size:.78rem !important;
+    }
+    body.theme-potager .site-header .nav > nav,
+    body.theme-prestadmin .site-header .nav > nav{
+        gap:14px !important;
+        overflow-x:auto !important;
+        white-space:nowrap !important;
+        padding-top:10px !important;
+        padding-bottom:10px !important;
+    }
+    body.theme-potager .site-header .nav > nav .button,
+    body.theme-prestadmin .site-header .nav > nav .button{
+        margin-left:0 !important;
+    }
+}
+
+@media (max-width:620px){
+    body.theme-potager .brand-rgpd strong::after{font-size:1.28rem;}
+    body.theme-prestadmin .brand-rgpd strong::after{font-size:1rem;}
+    body.theme-potager .brand-rgpd small::after{font-size:.62rem;}
+    body.theme-prestadmin .brand-rgpd small::after{font-size:.55rem;}
+    body.theme-potager .site-header .ptm-brand-mark,
+    body.theme-prestadmin .site-header .ptm-brand-mark{
+        width:42px;
+        height:42px;
+        min-width:42px;
+        background-size:35px 35px !important;
+    }
+}

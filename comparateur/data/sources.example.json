@@ -1,0 +1,16 @@
+{
+  "generated_at": null,
+  "method": {
+    "not_ai_text": "Calculs déterministes à partir de sources publiques et de règles écrites à l'avance.",
+    "source_privacy_text": "Les profils individuels peuvent être anonymisés dans l'affichage public.",
+    "legal_separation_text": "Les prestations juridiques restent hors des moyennes principales.",
+    "dpo_text": "Les offres de DPO externalisé sont comparées dans une catégorie distincte.",
+    "regional_filter_text": "Le filtre régional repose sur les localisations explicitement vérifiées, sans géolocalisation du visiteur."
+  },
+  "our_offers": [],
+  "views": {
+    "france": {"summaries": [], "dpo_summaries": [], "legal_offers": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0},
+    "grand-est": {"summaries": [], "dpo_summaries": [], "legal_offers": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0},
+    "moselle": {"summaries": [], "dpo_summaries": [], "legal_offers": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0}
+  }
+}

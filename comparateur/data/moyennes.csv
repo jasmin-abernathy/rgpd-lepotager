@@ -1,0 +1,18 @@
+﻿service_family;client_segment;unit;n;mean;median;min;max;quality;display_as_comparison
+Audit RGPD complet;Indépendant;EUR/mission;1;545.0;545.0;545.0;545.0;observation unique;False
+Audit RGPD complet;PME;EUR/mission;1;1345.0;1345.0;1345.0;1345.0;observation unique;False
+Audit RGPD complet;TPE;EUR/mission;2;879.5;879.5;760.0;999.0;petit échantillon;True
+Audit RGPD de site web;Site vitrine;EUR/mission;1;1000.0;1000.0;1000.0;1000.0;observation unique;False
+Conseil RGPD / DPO — TJM;Tous;EUR/jour;14;668.57;635.0;390.0;1450.0;échantillon;True
+Diagnostic / audit initial RGPD;TPE / PME;EUR/mission;1;450.0;450.0;450.0;450.0;observation unique;False
+Diagnostic RGPD simple;Indépendant;EUR/mission;1;390.0;390.0;390.0;390.0;observation unique;False
+Diagnostic RGPD simple;PME;EUR/mission;1;840.0;840.0;840.0;840.0;observation unique;False
+Diagnostic RGPD simple;TPE;EUR/mission;1;545.0;545.0;545.0;545.0;observation unique;False
+Logiciel de conformité RGPD;TPE / PME;EUR/mois;1;30.0;30.0;30.0;30.0;observation unique;False
+Mise en conformité RGPD;Indépendant;EUR/mission;1;980.0;980.0;980.0;980.0;observation unique;False
+Mise en conformité RGPD;PME;EUR/mission;1;1390.0;1390.0;1390.0;1390.0;observation unique;False
+Mise en conformité RGPD;TPE;EUR/mission;1;1180.0;1180.0;1180.0;1180.0;observation unique;False
+Mise en conformité RGPD;TPE / PME;EUR/mission;2;1190.0;1190.0;880.0;1500.0;petit échantillon;True
+Mise en conformité RGPD de site web;Site web;EUR/mission;1;990.0;990.0;990.0;990.0;observation unique;False
+Pack conformité par traitement;TPE / PME;EUR/traitement;1;180.0;180.0;180.0;180.0;observation unique;False
+Plateforme RGPD + accompagnement;TPE / PME;EUR/an;1;990.0;990.0;990.0;990.0;observation unique;False

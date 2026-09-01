@@ -1,0 +1,57 @@
+/*
+ * Correctif racine RGPD — 18/08/2026
+ * - libellé d'origine discret, sans effet bouton
+ * - titres en serif
+ */
+
+:root {
+  --rgpd-title-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+                      Georgia, "Times New Roman", serif;
+}
+
+/* Les titres éditoriaux passent en serif ; l'interface reste en sans-serif. */
+h1,
+h2,
+h3 {
+  font-family: var(--rgpd-title-serif);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2,
+h3 {
+  font-weight: 700;
+}
+
+/* L'indication Prestadmin / Le Potager n'est plus traitée comme un bouton. */
+.ref-theme-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  width: auto;
+  padding: .2rem 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-weight: 800;
+}
+
+.ref-theme-badge .ref-theme-dot {
+  width: .55rem;
+  height: .55rem;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+/* Évite qu'une règle de thème ne réintroduise un fond/pill. */
+.theme-prestadmin .ref-theme-badge,
+.theme-potager .ref-theme-badge,
+.theme-direct .ref-theme-badge {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}

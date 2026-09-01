@@ -1,0 +1,405 @@
+/*
+====================================================================
+THÈMES SELON ?ref=
+====================================================================
+
+Le <body> reçoit automatiquement :
+    data-ref="prestadmin"
+    data-ref="potager"
+    data-ref="direct"
+
+C'est CE fichier qu'il faut modifier pour personnaliser l'apparence
+selon le canal commercial, sans toucher au style général.
+
+Exemples :
+    https://rgpd.lepotager.org/?ref=prestadmin
+    https://rgpd.lepotager.org/?ref=potager
+    https://rgpd.lepotager.org/
+
+Les couleurs propres aux liens Prestadmin / Potager restent identitaires.
+Le thème agit surtout sur l'interface commune : boutons, hero, cartes,
+Jardinier, accents, bordures et fonds.
+====================================================================
+*/
+
+/* --------------------------
+   Variables communes
+   -------------------------- */
+body[data-ref]{
+    --theme-main:#3f6549;
+    --theme-secondary:#648a6b;
+    --theme-soft:#e7f0e8;
+    --theme-soft-2:#f3f6f3;
+    --theme-ink:#ffffff;
+    --theme-line:#b9c9bd;
+    --theme-radius:20px;
+    --theme-card-radius:20px;
+    --theme-button-radius:999px;
+    --theme-shadow:0 18px 55px rgba(31,39,34,.09);
+}
+
+/* ================================================================
+   PRESTADMIN
+   Noir / gris, accent rouge discret, dessin plus strict.
+   ================================================================ */
+body[data-ref="prestadmin"]{
+    --theme-main:#262626;
+    --theme-secondary:#a44444;
+    --theme-soft:#eceae7;
+    --theme-soft-2:#f6f4f2;
+    --theme-ink:#ffffff;
+    --theme-line:#c9c5c1;
+    --theme-radius:10px;
+    --theme-card-radius:12px;
+    --theme-button-radius:7px;
+    --theme-shadow:0 10px 28px rgba(20,20,20,.10);
+
+    background:#f1f0ed;
+}
+
+body[data-ref="prestadmin"] .hero{
+    background:
+        linear-gradient(90deg, rgba(164,68,68,.055) 0 4px, transparent 4px),
+        linear-gradient(180deg,#f7f6f4 0%,#efeeeb 100%);
+}
+
+body[data-ref="prestadmin"] .site-header{
+    background:rgba(241,240,237,.96);
+    border-bottom-color:#c9c6c2;
+}
+
+body[data-ref="prestadmin"] .brand-rgpd .brand-mark{
+    background:#262626;
+    border-radius:6px;
+    box-shadow:inset 0 -4px 0 #a44444;
+}
+
+body[data-ref="prestadmin"] .ref-theme-badge,
+body[data-ref="prestadmin"] .pill:not(.neutral){
+    background:#262626;
+    color:#fff;
+    border-radius:5px;
+}
+
+body[data-ref="prestadmin"] .ref-theme-dot{background:#a44444}
+
+body[data-ref="prestadmin"] .button{
+    background:#262626;
+    border-radius:var(--theme-button-radius);
+}
+body[data-ref="prestadmin"] .button:hover{background:#383838}
+
+body[data-ref="prestadmin"] .button-ghost{
+    background:transparent;
+    color:#262626;
+    border:1px solid #aaa7a3;
+}
+body[data-ref="prestadmin"] .button-ghost:hover{background:#fff;color:#262626}
+
+body[data-ref="prestadmin"] .eyebrow,
+body[data-ref="prestadmin"] .text-button,
+body[data-ref="prestadmin"] .steps article>span{
+    color:#8f3939;
+}
+
+body[data-ref="prestadmin"] .origin-card,
+body[data-ref="prestadmin"] .price-card,
+body[data-ref="prestadmin"] .ptm-card,
+body[data-ref="prestadmin"] .disclaimer{
+    border-radius:var(--theme-card-radius);
+    box-shadow:var(--theme-shadow);
+}
+
+body[data-ref="prestadmin"] .origin-card{
+    border-top:4px solid #a44444;
+}
+
+body[data-ref="prestadmin"] .section-soft{
+    background:#e6e4e1;
+}
+
+body[data-ref="prestadmin"] .price-card.featured{
+    border-color:#a44444;
+    box-shadow:0 12px 30px rgba(94,48,48,.10);
+}
+
+body[data-ref="prestadmin"] .trust-strip{
+    background:#262626;
+}
+
+body[data-ref="prestadmin"] .progress span{
+    background:#a44444;
+}
+
+body[data-ref="prestadmin"] .choice input:checked + span{
+    border-color:#a44444;
+    background:#f2e4e2;
+    box-shadow:inset 0 0 0 1px #a44444;
+}
+
+body[data-ref="prestadmin"] .result-card{
+    background:#f2e4e2;
+    border-left:4px solid #a44444;
+    border-radius:8px;
+}
+
+body[data-ref="prestadmin"] .result-card .result-price{
+    color:#8e3838;
+}
+
+body[data-ref="prestadmin"] .wizard{
+    border-radius:12px;
+}
+body[data-ref="prestadmin"] .wizard::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:5px;
+    background:#a44444;
+}
+
+body[data-ref="prestadmin"] .wp-section{
+    background:#303030;
+}
+
+body[data-ref="prestadmin"] .identity-admin{
+    outline:2px solid rgba(164,68,68,.23);
+    outline-offset:-2px;
+}
+
+/* ================================================================
+   LE POTAGER
+   Vert, formes plus souples, effet plus organique.
+   ================================================================ */
+body[data-ref="potager"]{
+    --theme-main:#2d5941;
+    --theme-secondary:#52745e;
+    --theme-soft:#e2ece4;
+    --theme-soft-2:#f3f7f3;
+    --theme-ink:#ffffff;
+    --theme-line:#b7c8bb;
+    --theme-radius:24px;
+    --theme-card-radius:24px;
+    --theme-button-radius:999px;
+    --theme-shadow:0 18px 55px rgba(45,89,65,.10);
+
+    background:#eff3ef;
+}
+
+body[data-ref="potager"] .hero{
+    background:
+        radial-gradient(circle at 83% 12%,rgba(82,116,94,.17),transparent 28%),
+        radial-gradient(circle at 8% 86%,rgba(45,89,65,.07),transparent 25%),
+        linear-gradient(180deg,#f8faf8 0%,#eef3ef 100%);
+}
+
+body[data-ref="potager"] .brand-rgpd .brand-mark{
+    background:#2d5941;
+    border-radius:13px;
+}
+
+body[data-ref="potager"] .ref-theme-badge,
+body[data-ref="potager"] .pill:not(.neutral){
+    background:#e2ece4;
+    color:#2d5941;
+    border-radius:999px;
+}
+
+body[data-ref="potager"] .ref-theme-dot{background:#2d5941}
+
+body[data-ref="potager"] .button{
+    background:#2d5941;
+    border-radius:999px;
+}
+body[data-ref="potager"] .button:hover{background:#234a35}
+
+body[data-ref="potager"] .eyebrow,
+body[data-ref="potager"] .text-button,
+body[data-ref="potager"] .steps article>span{
+    color:#52745e;
+}
+
+body[data-ref="potager"] .origin-card,
+body[data-ref="potager"] .price-card,
+body[data-ref="potager"] .ptm-card,
+body[data-ref="potager"] .disclaimer{
+    border-radius:24px;
+    box-shadow:var(--theme-shadow);
+}
+
+body[data-ref="potager"] .origin-card{
+    border-top:4px solid #2d5941;
+}
+
+body[data-ref="potager"] .section-soft{
+    background:#e3ece5;
+}
+
+body[data-ref="potager"] .price-card.featured{
+    border-color:#2d5941;
+    box-shadow:0 18px 42px rgba(45,89,65,.13);
+}
+
+body[data-ref="potager"] .trust-strip,
+body[data-ref="potager"] .wp-section{
+    background:#2d5941;
+}
+
+body[data-ref="potager"] .progress span{
+    background:#2d5941;
+}
+
+body[data-ref="potager"] .choice input:checked + span{
+    border-color:#2d5941;
+    background:#e2ece4;
+    box-shadow:inset 0 0 0 1px #2d5941;
+}
+
+body[data-ref="potager"] .result-card{
+    background:#e2ece4;
+    border-left:4px solid #2d5941;
+    border-radius:18px;
+}
+
+body[data-ref="potager"] .result-card .result-price{
+    color:#2d5941;
+}
+
+body[data-ref="potager"] .wizard{
+    border-radius:28px;
+}
+
+body[data-ref="potager"] .identity-potager{
+    outline:2px solid rgba(45,89,65,.20);
+    outline-offset:-2px;
+}
+
+/* ================================================================
+   DIRECT / COMMUN
+   Fusion visuelle réelle : noir/gris Prestadmin + vert Potager.
+   ================================================================ */
+body[data-ref="direct"]{
+    --theme-main:#314a3b;
+    --theme-secondary:#725453;
+    --theme-soft:#e8ece8;
+    --theme-soft-2:#f5f4f1;
+    --theme-ink:#ffffff;
+    --theme-line:#c6cec8;
+    --theme-radius:18px;
+    --theme-card-radius:18px;
+    --theme-button-radius:999px;
+    --theme-shadow:0 16px 48px rgba(31,39,34,.09);
+
+    background:#f1f0ec;
+}
+
+body[data-ref="direct"] .hero{
+    background:
+        linear-gradient(90deg,rgba(164,68,68,.055) 0 50%,rgba(45,89,65,.075) 50% 100%),
+        linear-gradient(180deg,#faf9f6,#f0efeb);
+}
+
+body[data-ref="direct"] .brand-rgpd .brand-mark{
+    background:linear-gradient(135deg,#262626 0 48%,#2d5941 48% 100%);
+}
+
+body[data-ref="direct"] .ref-theme-badge{
+    color:#313633;
+    background:
+        linear-gradient(90deg,#eceae7 0 50%,#e2ece4 50% 100%);
+}
+
+body[data-ref="direct"] .ref-theme-dot{
+    background:linear-gradient(90deg,#a44444 0 50%,#2d5941 50% 100%);
+}
+
+body[data-ref="direct"] .button{
+    background:#314a3b;
+}
+body[data-ref="direct"] .button:hover{background:#273e31}
+
+body[data-ref="direct"] .origin-card{
+    border-top:4px solid transparent;
+    border-image:linear-gradient(90deg,#a44444,#2d5941) 1;
+}
+
+body[data-ref="direct"] .price-card.featured{
+    border-color:#4c6e58;
+}
+
+body[data-ref="direct"] .progress span{
+    background:linear-gradient(90deg,#a44444,#2d5941);
+}
+
+body[data-ref="direct"] .result-card{
+    background:linear-gradient(90deg,#f1e7e5,#e5eee7);
+    border-left:4px solid #4c6e58;
+}
+
+/* --------------------------
+   Badge visible de contrôle
+   -------------------------- */
+.ref-theme-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+    padding:.36rem .62rem;
+    border:1px solid rgba(110,118,113,.18);
+    font-size:.70rem;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+}
+
+.ref-theme-dot{
+    display:block;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+}
+
+/* --------------------------
+   Pages juridiques : même thème
+   -------------------------- */
+body[data-ref="prestadmin"] .legal-page{
+    background:#f1f0ed;
+}
+body[data-ref="prestadmin"] .legal-wrap h1,
+body[data-ref="prestadmin"] .legal-wrap h2{
+    color:#262626;
+}
+body[data-ref="prestadmin"] .back-link{
+    color:#8f3939;
+}
+
+body[data-ref="potager"] .legal-page{
+    background:#eff3ef;
+}
+body[data-ref="potager"] .legal-wrap h1,
+body[data-ref="potager"] .legal-wrap h2{
+    color:#264b37;
+}
+body[data-ref="potager"] .back-link{
+    color:#2d5941;
+}
+
+body[data-ref="direct"] .legal-page{
+    background:
+        linear-gradient(90deg,rgba(164,68,68,.035),rgba(45,89,65,.045)),
+        #f4f3ef;
+}
+
+/* Mobile : conserver les mêmes différences sans surcharge */
+@media(max-width:650px){
+    body[data-ref="prestadmin"] .price-card,
+    body[data-ref="prestadmin"] .origin-card{
+        border-radius:9px;
+    }
+    body[data-ref="potager"] .price-card,
+    body[data-ref="potager"] .origin-card{
+        border-radius:21px;
+    }
+}
