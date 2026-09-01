@@ -8,7 +8,24 @@ Code de **rgpd.lepotager.org** — mini-site et comparateur RGPD Le Potager / Pr
 - `comparateur/` : comparateur RGPD ;
 - `cron/` : collecte, découverte et reconstruction des données ;
 - `cron/private/` : configuration et données de travail non publiques ;
-- `assets/` : styles, scripts et identité visuelle.
+- `assets/` : styles, scripts et identité visuelle ;
+- `includes/site-header.php` : composant unique du header public ;
+- `assets/site-header.css` : styles et variantes du header commun / Potager / Prestadmin.
+
+## Header public : une seule source de vérité
+
+Le header ne doit plus être recodé ou maquillé séparément selon les pages.
+
+La structure commune est :
+
+1. identité `RGPD au propre` + `organisation × numérique` ;
+2. bandeau de marque selon le canal (`direct`, `potager`, `prestadmin`) ;
+3. CTA unique `Diagnostic rapide` à droite, avec l'éclair `⌁` ;
+4. navigation secondaire.
+
+L'accueil et le comparateur utilisent tous les deux `includes/site-header.php`. Les différences de marque doivent rester limitées aux textes et aux variables/styles de `assets/site-header.css`.
+
+Le diagnostic n'est pas dupliqué dans le hero : sur l'accueil le CTA du header ouvre directement le parcours ; depuis le comparateur il revient sur la racine avec `#diagnostic`, puis `assets/app.js` ouvre le parcours automatiquement.
 
 ## Important : fichiers volontairement absents de Git
 
