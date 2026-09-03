@@ -57,7 +57,7 @@ function rgpd_render_header(string $ref = 'direct', string $active = 'home', boo
         <div class="shell rgpd-global-identity-row">
             <a class="rgpd-global-home" href="<?= rgpd_header_e($homeHref) ?>" aria-label="Accueil RGPD au propre">
                 <span class="rgpd-global-mark" aria-hidden="true">
-                    <img src="/assets/ptm-logo.svg" alt="" width="92" height="92">
+                    <img src="/assets/ptm-logo.svg" alt="Logo de RGPD au propre" width="92" height="92">
                 </span>
                 <span class="rgpd-global-title-wrap">
                     <strong>RGPD au propre</strong>
@@ -109,6 +109,7 @@ function rgpd_render_header(string $ref = 'direct', string $active = 'home', boo
                 <a href="<?= rgpd_header_e($methodHref) ?>">Méthode</a>
                 <a href="<?= rgpd_header_e($pricingHref) ?>">Tarifs</a>
                 <a<?= $active === 'comparateur' ? ' class="active" aria-current="page"' : '' ?> href="<?= rgpd_header_e($compareHref) ?>">Comparateur</a>
+                <button class="rgpd-global-a11y" type="button" data-rgpd-accessibility-toggle aria-pressed="false">Version accessible</button>
             </nav>
         </div>
     </div>
