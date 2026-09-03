@@ -16,6 +16,8 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
   <link rel="stylesheet" href="assets/style.css?v=stable-20260820">
   <link rel="stylesheet" href="assets/themes.css?v=stable-20260820">
   <link rel="stylesheet" href="assets/root-serif-patch.css?v=stable-20260820">
+<link rel="stylesheet" href="/assets/accessibility.css?v=1">
+<script defer src="/assets/accessibility.js?v=1"></script>
 </head>
 <body class="theme-<?= e((string)$ref) ?>" data-ref="<?= e((string)$ref) ?>">
 <main class="legal-page">
