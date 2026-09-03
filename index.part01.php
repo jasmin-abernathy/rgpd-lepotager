@@ -52,6 +52,8 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
     <link rel="stylesheet" href="assets/style.css?v=2">
     <link rel="stylesheet" href="assets/themes.css?v=21">
     <link rel="stylesheet" href="assets/site-header.css?v=1">
+<link rel="stylesheet" href="/assets/accessibility.css?v=1">
+<script defer src="/assets/accessibility.js?v=1"></script>
 </head>
 <body class="theme-<?= e($ref) ?>" data-ref="<?= e($ref) ?>">
 <a class="skip-link" href="#main">Aller au contenu</a>
