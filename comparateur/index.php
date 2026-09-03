@@ -28,6 +28,7 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
 ?>
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Comparateur des tarifs RGPD — Prestadmin × Le Potager</title><meta name="description" content="Tarifs publics observés pour des prestations RGPD, avec moyennes, médianes et sources.">
+<link rel="canonical" href="https://rgpd.lepotager.org/comparateur/">
 <link rel="stylesheet" href="assets/style.css?v=stable-1746-plus">
 <link rel="stylesheet" href="../assets/site-header.css?v=1">
 </head>
