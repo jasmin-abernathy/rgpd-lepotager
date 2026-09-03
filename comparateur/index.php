@@ -31,6 +31,8 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
 <link rel="canonical" href="https://rgpd.lepotager.org/comparateur/">
 <link rel="stylesheet" href="assets/style.css?v=stable-1746-plus">
 <link rel="stylesheet" href="../assets/site-header.css?v=1">
+<link rel="stylesheet" href="/assets/accessibility.css?v=1">
+<script defer src="/assets/accessibility.js?v=1"></script>
 </head>
 <body class="theme-<?= htmlspecialchars($ref, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
 <?php rgpd_render_header($ref, 'comparateur', false); ?>
