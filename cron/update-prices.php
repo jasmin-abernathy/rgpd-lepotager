@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 $base=dirname(__DIR__);
-$publicFile=$base.'/comparateur/data/sources.json';
+require_once __DIR__.'/bootstrap-public-data.php';
+$publicFile=rgpd_ensure_public_data($base);
 $df=__DIR__.'/private/observations-private.json';
 $rf=__DIR__.'/private/crawl-rules.json';
 $lf=__DIR__.'/last-run.json';
