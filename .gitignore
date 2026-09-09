@@ -11,6 +11,7 @@ cron/private/worker-sync.php
 cron/private/candidates.json
 cron/private/observations-private.json
 cron/private/update-prices.lock
+cron/private/discover-sources.lock
 cron/private/worker-sync.lock
 comparateur/data/sources.json
 cron/last-run.json
