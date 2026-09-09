@@ -30,13 +30,21 @@ jobs:
 
       - name: Validate safety guards
         run: |
-          php -r '
-          $s=file_get_contents("cron/update-prices.php");
-          foreach (["LOCK_EX|LOCK_NB", "SKIP: update-prices already running", "crawlBudgetSeconds=60", "min(6,(int)$c[\"timeout_seconds\"])", "duration_seconds"] as $needle) {
-            if (strpos($s,$needle)===false) { fwrite(STDERR,"Missing guard: $needle\n"); exit(1); }
-          }
-          echo "Cron guards present\n";
-          '
+          python3 - <<'PY'
+          from pathlib import Path
+          s = Path('cron/update-prices.php').read_text(encoding='utf-8')
+          needles = [
+              'LOCK_EX|LOCK_NB',
+              'SKIP: update-prices already running',
+              '$crawlBudgetSeconds=60;',
+              "min(6,(int)$c['timeout_seconds'])",
+              "'duration_seconds'=>",
+          ]
+          missing = [n for n in needles if n not in s]
+          if missing:
+              raise SystemExit('Missing cron guards: ' + ', '.join(missing))
+          print('Cron guards present')
+          PY
           git diff --check
 
       - name: Commit hardened cron
