@@ -1,0 +1,106 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+if (PHP_SAPI !== 'cli') {
+    http_response_code(404);
+    exit;
+}
+
+$base = dirname(__DIR__);
+$configFile = __DIR__.'/private/worker-sync.php';
+if (!is_file($configFile)) {
+    echo "Worker sync désactivé : configuration absente.\n";
+    exit(0);
+}
+$config = require $configFile;
+if (!is_array($config) || empty($config['enabled'])) {
+    echo "Worker sync désactivé.\n";
+    exit(0);
+}
+
+$baseUrl = rtrim((string)($config['base_url'] ?? ''), '/');
+$token = trim((string)($config['token'] ?? ''));
+$timeout = max(2, min(15, (int)($config['timeout_seconds'] ?? 8)));
+if ($baseUrl === '' || !str_starts_with($baseUrl, 'https://')) {
+    throw new RuntimeException('worker-sync.php : base_url HTTPS obligatoire.');
+}
+if ($token === '' || str_starts_with($token, 'REMPLACER_')) {
+    throw new RuntimeException('worker-sync.php : token non configuré.');
+}
+
+$lock = fopen(__DIR__.'/private/worker-sync.lock', 'c');
+if ($lock === false) {
+    throw new RuntimeException('Impossible d’ouvrir le verrou worker-sync.');
+}
+if (!flock($lock, LOCK_EX | LOCK_NB)) {
+    echo "SKIP: synchronisation worker déjà en cours\n";
+    exit(0);
+}
+
+$datasets = [
+    'rgpd/comparator' => $base.'/comparateur/data/sources.json',
+    'rgpd/candidates' => __DIR__.'/private/candidates.json',
+    'rgpd/price-last-run' => __DIR__.'/last-run.json',
+    'rgpd/discovery-last-run' => __DIR__.'/discovery-last-run.json',
+];
+
+function rgpd_worker_fetch(string $url, string $token, int $timeout): string
+{
+    $context = stream_context_create([
+        'http' => [
+            'method' => 'GET',
+            'timeout' => $timeout,
+            'follow_location' => 0,
+            'ignore_errors' => true,
+            'header' => "Authorization: Bearer {$token}\r\nAccept: application/json\r\nUser-Agent: LePotager-RGPD-Sync/1.0\r\n",
+        ],
+        'ssl' => [
+            'verify_peer' => true,
+            'verify_peer_name' => true,
+        ],
+    ]);
+    $raw = @file_get_contents($url, false, $context);
+    $headers = $http_response_header ?? [];
+    $status = 0;
+    if (isset($headers[0]) && preg_match('/\s(\d{3})\s/', $headers[0], $m)) {
+        $status = (int)$m[1];
+    }
+    if ($raw === false || $status !== 200) {
+        throw new RuntimeException("Worker indisponible ({$status}) : {$url}");
+    }
+    if (strlen($raw) > 20 * 1024 * 1024) {
+        throw new RuntimeException('Réponse worker trop volumineuse.');
+    }
+    json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+    return $raw;
+}
+
+function rgpd_atomic_write(string $destination, string $raw): void
+{
+    $dir = dirname($destination);
+    if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
+        throw new RuntimeException('Impossible de créer '.$dir);
+    }
+    $tmp = $destination.'.worker.tmp.'.getmypid();
+    if (file_put_contents($tmp, $raw, LOCK_EX) === false || !rename($tmp, $destination)) {
+        @unlink($tmp);
+        throw new RuntimeException('Écriture atomique impossible : '.$destination);
+    }
+}
+
+$downloaded = [];
+try {
+    foreach ($datasets as $dataset => $destination) {
+        $raw = rgpd_worker_fetch($baseUrl.'/api/v1/'.str_replace('%2F', '/', rawurlencode($dataset)), $token, $timeout);
+        $downloaded[$destination] = $raw;
+    }
+    foreach ($downloaded as $destination => $raw) {
+        rgpd_atomic_write($destination, $raw);
+    }
+} catch (Throwable $e) {
+    fwrite(STDERR, "Synchronisation worker annulée, cache existant conservé : {$e->getMessage()}\n");
+    exit(1);
+}
+
+echo 'OK — '.count($downloaded)." jeux de données synchronisés\n";
