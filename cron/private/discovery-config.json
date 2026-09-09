@@ -2,9 +2,9 @@
   "enabled": true,
   "provider": "bing_rss",
   "searxng_url": "",
-  "max_results_per_query": 8,
-  "request_delay_ms": 1500,
-  "timeout_seconds": 15,
+  "max_results_per_query": 4,
+  "request_delay_ms": 900,
+  "timeout_seconds": 6,
   "queries": {
     "france": ["\"audit RGPD\" tarif", "\"diagnostic RGPD\" prix", "\"mise en conformité RGPD\" tarif", "\"DPO externalisé\" tarif"],
     "grand-est": ["\"audit RGPD\" tarif \"Grand Est\"", "\"RGPD\" tarif Metz", "\"RGPD\" tarif Strasbourg", "\"RGPD\" tarif Nancy", "\"RGPD\" tarif Reims", "\"RGPD\" tarif Épinal", "\"RGPD\" tarif Mulhouse", "\"DPO externalisé\" tarif \"Grand Est\""],
