@@ -2,6 +2,25 @@
 declare(strict_types=1);
 
 $base=dirname(__DIR__);
+
+/* Empêche deux exécutions cron de crawler les mêmes sources en parallèle. */
+$lockPath=__DIR__.'/private/update-prices.lock';
+$lockHandle=fopen($lockPath,'c');
+if($lockHandle===false) throw new RuntimeException('Unable to open cron lock: '.$lockPath);
+if(!flock($lockHandle,LOCK_EX|LOCK_NB)){
+    echo "SKIP: update-prices already running\n";
+    exit(0);
+}
+register_shutdown_function(static function() use($lockHandle): void {
+    @flock($lockHandle,LOCK_UN);
+    @fclose($lockHandle);
+});
+
+$startedAt=microtime(true);
+$crawlBudgetSeconds=60;
+$deadline=$startedAt+$crawlBudgetSeconds;
+if(function_exists('set_time_limit')) @set_time_limit(75);
+
 require_once __DIR__.'/bootstrap-public-data.php';
 $publicFile=rgpd_ensure_public_data($base);
 $df=__DIR__.'/private/observations-private.json';
@@ -10,7 +29,10 @@ $lf=__DIR__.'/last-run.json';
 
 $d=json_decode((string)file_get_contents($df),true,512,JSON_THROW_ON_ERROR);
 $c=json_decode((string)file_get_contents($rf),true,512,JSON_THROW_ON_ERROR);
-$ua=$c['user_agent']; $delay=(int)$c['delay_ms']; $timeout=(int)$c['timeout_seconds']; $log=[];
+$ua=$c['user_agent'];
+$delay=max(0,min(1200,(int)$c['delay_ms']));
+$timeout=max(2,min(6,(int)$c['timeout_seconds']));
+$log=[];
 
 function geturl(string $u,string $ua,int $t): string|false {
     $x=stream_context_create(['http'=>[
@@ -65,8 +87,16 @@ function summary(array $items): array {
 
 $idx=[]; foreach($d['observations'] as $i=>$o) $idx[$o['id']]=$i;
 foreach($c['rules'] as $r){
+    if(microtime(true)>=$deadline){
+        $log[]=['status'=>'budget_exhausted','budget_seconds'=>$crawlBudgetSeconds];
+        break;
+    }
     $u=$r['url'];
     if(!allowed($u,$ua,$timeout)){$log[]=['url'=>$u,'status'=>'robots'];continue;}
+    if(microtime(true)>=$deadline){
+        $log[]=['url'=>$u,'status'=>'budget_exhausted','budget_seconds'=>$crawlBudgetSeconds];
+        break;
+    }
     $h=geturl($u,$ua,$timeout);
     if($h===false){$log[]=['url'=>$u,'status'=>'fetch_failed'];continue;}
     $t=textonly($h);
@@ -83,7 +113,8 @@ foreach($c['rules'] as $r){
         $up[]=['id'=>$x['id'],'old'=>$old,'new'=>$v];
     }
     $log[]=['url'=>$u,'status'=>'ok','updated'=>$up];
-    usleep($delay*1000);
+    $remainingUs=(int)max(0,($deadline-microtime(true))*1000000);
+    if($remainingUs>0 && $delay>0) usleep(min($delay*1000,$remainingUs));
 }
 
 /* La classification comparison_scope est persistante dans observations-private.json.
@@ -173,5 +204,10 @@ $tmpPublic=$publicFile.'.tmp';
 file_put_contents($tmpPublic,json_encode($public,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES),LOCK_EX);
 rename($tmpPublic,$publicFile);
 
-file_put_contents($lf,json_encode(['finished_at'=>date(DATE_ATOM),'events'=>$log],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES),LOCK_EX);
+file_put_contents($lf,json_encode([
+    'finished_at'=>date(DATE_ATOM),
+    'duration_seconds'=>round(microtime(true)-$startedAt,3),
+    'network_timeout_seconds'=>$timeout,
+    'events'=>$log
+],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES),LOCK_EX);
 require_once __DIR__.'/lib-comparator.php'; rgpd_rebuild_public(dirname(__DIR__)); echo "OK\n";
