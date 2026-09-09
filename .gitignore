@@ -9,6 +9,7 @@ cron/private/discovery-admin.php
 # Runtime comparator data (must stay local on production)
 cron/private/candidates.json
 cron/private/observations-private.json
+cron/private/update-prices.lock
 comparateur/data/sources.json
 cron/last-run.json
 cron/discovery-last-run.json

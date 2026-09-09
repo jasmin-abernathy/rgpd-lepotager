@@ -4,7 +4,7 @@ declare(strict_types=1);
 $base=dirname(__DIR__);
 
 /* Empêche deux exécutions cron de crawler les mêmes sources en parallèle. */
-$lockPath=sys_get_temp_dir().'/rgpd-lepotager-update-prices.lock';
+$lockPath=__DIR__.'/private/update-prices.lock';
 $lockHandle=fopen($lockPath,'c');
 if($lockHandle===false) throw new RuntimeException('Unable to open cron lock: '.$lockPath);
 if(!flock($lockHandle,LOCK_EX|LOCK_NB)){
