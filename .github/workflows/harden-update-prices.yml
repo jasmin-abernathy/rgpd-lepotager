@@ -1,0 +1,48 @@
+name: Harden update-prices cron
+
+on:
+  push:
+    branches:
+      - fix/cron-overlap-guard
+    paths:
+      - .github/tmp/harden-update-prices.py
+      - .github/workflows/harden-update-prices.yml
+
+permissions:
+  contents: write
+
+jobs:
+  harden:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: fix/cron-overlap-guard
+          fetch-depth: 0
+
+      - name: Apply guarded transformation
+        run: python3 .github/tmp/harden-update-prices.py
+
+      - name: Validate PHP syntax
+        run: php -l cron/update-prices.php
+
+      - name: Validate safety guards
+        run: |
+          php -r '
+          $s=file_get_contents("cron/update-prices.php");
+          foreach (["LOCK_EX|LOCK_NB", "SKIP: update-prices already running", "crawlBudgetSeconds=60", "min(6,(int)$c[\"timeout_seconds\"])", "duration_seconds"] as $needle) {
+            if (strpos($s,$needle)===false) { fwrite(STDERR,"Missing guard: $needle\n"); exit(1); }
+          }
+          echo "Cron guards present\n";
+          '
+          git diff --check
+
+      - name: Commit hardened cron
+        run: |
+          git config user.name 'Jasmin-potager'
+          git config user.email 'jasmin@lepotager.org'
+          git add cron/update-prices.php
+          git commit -m 'Sécurise le cron contre les chevauchements et timeouts longs'
+          git push origin HEAD:fix/cron-overlap-guard
