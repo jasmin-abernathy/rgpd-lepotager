@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 cron/private/discovery-admin.php
+cron/private/worker-sync.php
 *.pem
 *.key
 
@@ -10,6 +11,7 @@ cron/private/discovery-admin.php
 cron/private/candidates.json
 cron/private/observations-private.json
 cron/private/update-prices.lock
+cron/private/worker-sync.lock
 comparateur/data/sources.json
 cron/last-run.json
 cron/discovery-last-run.json
