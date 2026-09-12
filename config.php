@@ -19,7 +19,7 @@ return [
     'prestadmin_email' => 'contact@prestadmin57.fr',
 
     // Adresse dédiée aux demandes liées aux données / opposition
-    'rights_email' => 'jleveque@lepotager.org',
+    'rights_email' => 'contact@lepotager.org',
 
     // Adresse d'expédition locale. Elle doit exister côté hébergement.
     'from_email' => 'contact@lepotager.org',
