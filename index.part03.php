@@ -14,23 +14,23 @@
     <section class="section wp-section ptm-corrected">
         <div class="shell wp-grid">
             <div class="ptm-copy">
-                <p class="eyebrow">WordPress uniquement · capacité actuelle</p>
-                <h2>Privacy Tracker Manager aide pendant les revues.<br><em>Il ne surveille pas le site à distance.</em></h2>
+                <p class="eyebrow">WordPress · SPIP · Grav · capacité actuelle</p>
+                <h2>Privacy Tracker Manager se décline sur plusieurs CMS.<br><em>Le niveau de maturité n'est pas le même partout.</em></h2>
                 <p>
-                    Privacy Tracker Manager (PTM) est le plugin WordPress développé par
+                    Privacy Tracker Manager (PTM) est développé par
                     <a class="provider-link potager-link-dark" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>.
-                    Il est installé dans le WordPress du client et consulté depuis son administration quand une revue est prévue.
+                    La version WordPress est celle utilisée dans les prestations actuelles. Le portage SPIP, encore en développement, sait déjà inventorier les plugins actifs et lancer un scan progressif du HTML rendu, mais doit encore être validé sur une copie exécutable avant production. Le portage Grav dispose d'une première base locale, d'un inventaire de plugins et des règles PTM ; son scanner n'est pas encore actif et il reste lui aussi réservé au développement.
                 </p>
 
                 <div class="ptm-status">
-                    <div class="ptm-status-ok"><b>✓ Aujourd’hui</b><span>Installation et configuration dans WordPress ; utilisation dans le back-office lors des contrôles prévus.</span></div>
-                    <div class="ptm-status-no"><b>× Pas encore</b><span>Pas de remontée automatique vers un tableau de bord externe, pas de surveillance automatique 24/7 par Privacy Tracker Manager, pas d’accès distant autonome fourni par le plugin.</span></div>
+                    <div class="ptm-status-ok"><b>✓ Aujourd’hui</b><span>WordPress : utilisation dans le back-office lors des contrôles prévus. SPIP : inventaire local et scan progressif en développement. Grav : première baseline locale et inventaire disponibles.</span></div>
+                    <div class="ptm-status-no"><b>× Pas encore</b><span>Pas de validation production des portages SPIP et Grav, pas de surveillance automatique 24/7 et pas de remontée automatique vers un tableau de bord externe sur aucune version.</span></div>
                 </div>
 
-                <p class="ptm-human"><strong>Les formules annuelles rémunèrent donc des revues et interventions humaines planifiées.</strong> Si une fonction distante est ajoutée plus tard, elle sera présentée comme une évolution distincte.</p>
+                <p class="ptm-human"><strong>Les formules annuelles rémunèrent donc des revues et interventions humaines planifiées.</strong> Les portages SPIP et Grav ne sont pas présentés comme des solutions de production tant que leurs validations respectives ne sont pas terminées.</p>
             </div>
 
-            <div class="ptm-card ptm-screen" aria-label="Schéma de fonctionnement actuel de Privacy Tracker Manager">
+            <div class="ptm-card ptm-screen" aria-label="Schéma de fonctionnement actuel de Privacy Tracker Manager sur WordPress">
                 <div class="ptm-screen-top"><span></span><span></span><span></span><small>WordPress du client</small></div>
                 <div class="ptm-screen-body">
                     <div class="ptm-sidebar"><span>Tableau de bord</span><span>Pages</span><span>Extensions</span><b>Privacy Tracker Manager</b></div>

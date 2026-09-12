@@ -51,6 +51,7 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/style.css?v=2">
     <link rel="stylesheet" href="assets/themes.css?v=21">
+    <link rel="stylesheet" href="assets/theme-contrast-fix.css?v=1">
     <link rel="stylesheet" href="assets/site-header.css?v=1">
 <link rel="stylesheet" href="/assets/accessibility.css?v=1">
 <script defer src="/assets/accessibility.js?v=1"></script>
@@ -79,7 +80,7 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
                 <p class="lead">
                     <a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> remet de l’ordre dans les documents, procédures et échéances.
                     <a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a> vérifie ce qui se passe réellement côté site, formulaires et outils numériques.
-                    Sur WordPress, Privacy Tracker Manager (PTM) peut être utilisé <strong>lors des revues planifiées depuis l’administration du site</strong> — sans remontée distante automatique dans sa version actuelle.
+                    Privacy Tracker Manager (PTM) est utilisé sur WordPress <strong>lors des revues planifiées depuis l’administration du site</strong>. Des portages SPIP et Grav sont aussi en développement : SPIP dispose déjà d’un scan progressif et d’un inventaire local à valider sur copie exécutable ; Grav dispose d’une première base locale et doit encore implémenter puis valider le scan du HTML rendu avant tout usage en production. Aucune de ces versions ne remonte aujourd’hui automatiquement ses résultats vers un tableau de bord externe.
                 </p>
                 <div class="hero-actions">
                     <a class="button button-ghost" href="#offres">Voir les tarifs</a>

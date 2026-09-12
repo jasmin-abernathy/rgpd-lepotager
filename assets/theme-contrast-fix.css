@@ -1,0 +1,30 @@
+/* Correctif de contraste ciblé pour les variantes Potager et commune.
+   themes.css recolore .button après le style de base ; sans ce correctif,
+   .button-ghost héritait d'un texte vert sur un fond devenu vert. */
+
+body[data-ref="potager"] .button:not(.button-ghost),
+body[data-ref="direct"] .button:not(.button-ghost){
+    color:#fff;
+}
+
+body[data-ref="potager"] .button-ghost{
+    background:transparent;
+    color:#2d5941;
+    border:1px solid #9fb5a5;
+}
+body[data-ref="potager"] .button-ghost:hover,
+body[data-ref="potager"] .button-ghost:focus-visible{
+    background:#fff;
+    color:#234a35;
+}
+
+body[data-ref="direct"] .button-ghost{
+    background:transparent;
+    color:#314a3b;
+    border:1px solid #aebbb3;
+}
+body[data-ref="direct"] .button-ghost:hover,
+body[data-ref="direct"] .button-ghost:focus-visible{
+    background:#fff;
+    color:#273e31;
+}

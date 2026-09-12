@@ -1,6 +1,6 @@
                 <div class="dual-role dual-role-potager">
                     <a href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web ↗</a>
-                    <span>site · formulaires · traceurs · WordPress · Privacy Tracker Manager</span>
+                    <span>site · formulaires · traceurs · WordPress · SPIP · Grav · Privacy Tracker Manager</span>
                 </div>
                 <div class="origin-route"><span>besoin</span><b>→</b><span>bonne compétence</span><b>→</b><span>facture séparée</span></div>
             </aside>
@@ -49,7 +49,7 @@
                 <article>
                     <span>04</span>
                     <h3>Suivi</h3>
-                    <p>Sur WordPress, Privacy Tracker Manager (PTM) peut être consulté pendant les revues planifiées depuis le back-office du client. Ces revues restent des interventions humaines ; le plugin ne transmet pas encore ses résultats à distance.</p>
+                    <p>Privacy Tracker Manager (PTM) est utilisé sur WordPress pendant les revues planifiées. Les portages SPIP et Grav sont en développement avec des niveaux de maturité différents : SPIP sait déjà réaliser un scan progressif et inventorier les plugins ; Grav dispose pour l'instant d'une base locale et d'un inventaire, tandis que le premier scan du HTML rendu reste à implémenter puis à valider. Les revues restent humaines et aucune version ne transmet encore automatiquement ses résultats à distance.</p>
                 </article>
             </div>
         </div>
@@ -91,6 +91,7 @@
                         <li><a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> : registre de base, conservation, procédures, organisation documentaire</li>
                         <li><a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a> : formulaires, traceurs, confidentialité et corrections techniques</li>
                         <li>WordPress : installation et configuration de Privacy Tracker Manager (PTM) dans le site ; consultation lors des revues prévues, sans surveillance distante automatique</li>
+                        <li>SPIP et Grav : portages en développement, étudiés ou testés uniquement au cas par cas tant que leur validation de production n'est pas terminée</li>
                         <li>Suivi Essentiel possible : 310 €/an</li>
                     </ul>
                     <button class="text-button js-open-diagnostic" type="button">Vérifier si ce pack suffit →</button>
