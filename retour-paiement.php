@@ -92,9 +92,10 @@ $message = $details['kind'] === 'success'
       </div>
       <?php if (!empty($record['invoices']['potager']) && !empty($record['invoices']['prestadmin'])): ?>
       <div class="invoice-downloads">
-        <strong>Vos deux factures</strong>
-        <a class="button button-ghost" href="facture.php?d=<?=rawurlencode($id)?>&amp;state=<?=rawurlencode($state)?>&amp;issuer=potager">Facture Le Potager du Web · 75 €</a>
-        <a class="button button-ghost" href="facture.php?d=<?=rawurlencode($id)?>&amp;state=<?=rawurlencode($state)?>&amp;issuer=prestadmin">Facture Prestadmin · 75 €</a>
+        <strong>Téléchargez vos deux factures</strong>
+        <p>Vos factures sont prêtes au format PDF. Téléchargez-les maintenant pour les conserver avec vos justificatifs.</p>
+        <a class="button button-ghost" href="facture.php?d=<?=rawurlencode($id)?>&amp;state=<?=rawurlencode($state)?>&amp;issuer=potager">Télécharger la facture PDF · Le Potager du Web · 75 €</a>
+        <a class="button button-ghost" href="facture.php?d=<?=rawurlencode($id)?>&amp;state=<?=rawurlencode($state)?>&amp;issuer=prestadmin">Télécharger la facture PDF · Prestadmin · 75 €</a>
       </div>
       <?php elseif ($details['kind'] === 'success'): ?>
       <p class="invoice-pending">Les deux factures de 75 € sont rattachées à cette commande et seront mises à disposition dès finalisation administrative.</p>
