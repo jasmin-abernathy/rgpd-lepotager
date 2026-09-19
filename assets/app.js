@@ -10,6 +10,7 @@
   const next = document.getElementById('nextStep');
   const prev = document.getElementById('prevStep');
   const submit = document.getElementById('submitForm');
+  const payDiagnostic = document.getElementById('payDiagnostic');
   const stepNumber = document.getElementById('stepNumber');
   const progressBar = document.getElementById('progressBar');
   const resultCard = document.getElementById('resultCard');
@@ -66,6 +67,7 @@
     prev.hidden = current === 0;
     next.hidden = current === steps.length - 1;
     submit.hidden = current !== steps.length - 1;
+    if (payDiagnostic) payDiagnostic.hidden = current !== steps.length - 1;
 
     if (current === steps.length - 1) {
       buildResult();
@@ -124,10 +126,10 @@
 
     if (cms === 'Je ne sais pas' || cms === 'Pas de site') {
       return {
-        title: 'Commencer par le diagnostic humain',
+        title: 'Commencer par le diagnostic personnalisé',
         price: '150 €',
-        code: 'Diagnostic 150 €',
-        text: 'Votre situation mérite surtout d’être clarifiée avant de choisir un forfait. Le diagnostic humain permet de vérifier ce qui est réellement applicable.'
+        code: 'Diagnostic personnalisé 150 €',
+        text: 'Votre situation mérite surtout d’être clarifiée avant de choisir un forfait. Le diagnostic personnalisé permet de vérifier ce qui est réellement applicable.'
       };
     }
 
@@ -189,6 +191,48 @@
 
   prev.addEventListener('click', () => showStep(current - 1));
 
+  function validateFinalContact() {
+    if (!validateCurrentStep()) return false;
+    const email = form.querySelector('[name="email"]');
+    const privacy = form.querySelector('[name="privacy_ack"]');
+    if (email && !email.checkValidity()) {
+      email.reportValidity();
+      return false;
+    }
+    if (privacy && !privacy.checked) {
+      privacy.focus();
+      return false;
+    }
+    return true;
+  }
+
+  if (payDiagnostic) {
+    payDiagnostic.addEventListener('click', () => {
+      if (!validateFinalContact()) return;
+      buildResult();
+      status.className = 'form-status';
+      status.textContent = 'Préparation du paiement sécurisé…';
+      payDiagnostic.disabled = true;
+
+      const paymentForm = document.createElement('form');
+      paymentForm.method = 'post';
+      paymentForm.action = 'paiement.php';
+      paymentForm.hidden = true;
+
+      const data = new FormData(form);
+      data.set('service', 'diagnostic-personnalise');
+      for (const [name, value] of data.entries()) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = String(value);
+        paymentForm.appendChild(input);
+      }
+      document.body.appendChild(paymentForm);
+      paymentForm.submit();
+    });
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validateCurrentStep()) return;
@@ -212,6 +256,7 @@
       status.className = 'form-status success';
       status.textContent = 'Merci. Votre demande a bien été transmise.';
       submit.hidden = true;
+      if (payDiagnostic) payDiagnostic.hidden = true;
       prev.hidden = true;
 
       setTimeout(() => {
