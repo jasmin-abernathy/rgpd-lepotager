@@ -254,3 +254,14 @@ body{background:var(--bg);color:var(--ink);font-family:Montserrat,Inter,ui-sans-
 .payment-meta{display:grid;gap:8px;margin:24px 0;padding:18px;border:1px solid var(--line);border-radius:12px;background:#faf9f6}
 .payment-meta p{margin:0}
 @media(max-width:620px){.wizard-actions{flex-wrap:wrap}.wizard-actions .button{width:100%}}
+
+
+/* Données de facturation et téléchargement des factures */
+.billing-fields{
+  padding:13px 15px;border:1px dashed var(--line);border-radius:12px;background:#f4f5f1
+}
+.billing-fields strong{display:block}
+.billing-fields p{margin:.25rem 0 0;color:var(--muted);font-size:.84rem}
+.invoice-downloads{display:grid;gap:10px;margin:22px 0}
+.invoice-downloads .button{width:fit-content}
+.invoice-pending{margin:18px 0;padding:12px 14px;border-left:4px solid var(--admin-red);background:#f5f4f0;border-radius:10px;color:var(--muted)}
