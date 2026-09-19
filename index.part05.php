@@ -30,18 +30,24 @@
                     <span>J'ai lu la <a href="confidentialite.php?ref=<?= e($ref) ?>" target="_blank" rel="noopener">politique de confidentialité</a> et j'ai compris que ma demande sera transmise à <a href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> et au <a href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Potager du Web</a> pour être traitée conjointement.</span>
                 </label>
 
+                <div class="diagnostic-payment-note">
+                    <strong>Diagnostic personnalisé · 150 €</strong>
+                    <span>Paiement ponctuel par carte via Stancer. Aucun abonnement ni prélèvement récurrent.</span>
+                </div>
+
                 <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
             </section>
 
             <div class="wizard-actions">
                 <button class="button button-ghost" id="prevStep" type="button" hidden>Retour</button>
                 <button class="button" id="nextStep" type="button">Continuer</button>
-                <button class="button" id="submitForm" type="submit" hidden>Envoyer ma demande</button>
+                <button class="button button-ghost" id="submitForm" type="submit" hidden>Envoyer ma demande</button>
+                <button class="button button-payment" id="payDiagnostic" type="button" hidden>Réserver et payer 150 €</button>
             </div>
         </form>
     </section>
 </div>
 
-<script src="assets/app.js?v=2" defer></script>
+<script src="assets/app.js?v=3" defer></script>
 </body>
 </html>
