@@ -49,7 +49,7 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
     <link rel="canonical" href="https://rgpd.lepotager.org/">
     <meta name="theme-color" content="#274b3a">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/style.css?v=3">
+    <link rel="stylesheet" href="assets/style.css?v=4">
     <link rel="stylesheet" href="assets/themes.css?v=21">
     <link rel="stylesheet" href="assets/theme-contrast-fix.css?v=1">
     <link rel="stylesheet" href="assets/site-header.css?v=1">
