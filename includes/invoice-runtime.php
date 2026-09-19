@@ -9,22 +9,8 @@ if (!defined('RGPD_PAYMENT_BOOTSTRAP')) {
 const RGPD_INVOICE_STORAGE = '/home/sc1leja3715/stancer-private/private/rgpd-invoices';
 const RGPD_INVOICE_SHARE_CENTS = 7500;
 
-function rgpd_invoice_private_config(): array
-{
-    if (!is_readable(RGPD_STANCER_CONFIG)) {
-        throw new RuntimeException('Configuration privée indisponible pour la facturation.');
-    }
-    $config = require RGPD_STANCER_CONFIG;
-    if (!is_array($config)) {
-        throw new RuntimeException('Configuration privée invalide pour la facturation.');
-    }
-    return $config;
-}
-
 function rgpd_invoice_issuers(): array
 {
-    $private = rgpd_invoice_private_config();
-
     $issuers = [
         'potager' => [
             'prefix' => 'LPW-RGPD',
@@ -36,7 +22,7 @@ function rgpd_invoice_issuers(): array
             'city' => '57000 Metz',
             'country' => 'France',
             'email' => 'contact@lepotager.org',
-            'vat_mode' => strtolower(trim((string)($private['rgpd_invoice_potager_vat_mode'] ?? ''))),
+            'vat_mode' => 'franchise',
         ],
         'prestadmin' => [
             'prefix' => 'PREST-RGPD',
@@ -48,19 +34,10 @@ function rgpd_invoice_issuers(): array
             'city' => '57000 Metz',
             'country' => 'France',
             'email' => 'contact@prestadmin57.fr',
-            'vat_mode' => strtolower(trim((string)($private['rgpd_invoice_prestadmin_vat_mode'] ?? ''))),
+            'vat_mode' => 'franchise',
         ],
     ];
 
-    foreach ($issuers as $key => &$issuer) {
-        if (!in_array($issuer['vat_mode'], ['franchise', 'vat20'], true)) {
-            throw new RuntimeException(
-                'Régime TVA à configurer pour ' . $key
-                . ' : rgpd_invoice_' . $key . '_vat_mode=franchise ou vat20.'
-            );
-        }
-    }
-    unset($issuer);
 
     return $issuers;
 }
@@ -146,16 +123,6 @@ function rgpd_invoice_amounts(string $vatMode): array
             'vat_cents' => 0,
             'gross_cents' => RGPD_INVOICE_SHARE_CENTS,
             'vat_label' => 'TVA non applicable, art. 293 B du CGI.',
-        ];
-    }
-
-    if ($vatMode === 'vat20') {
-        $net = (int)round(RGPD_INVOICE_SHARE_CENTS / 1.20);
-        return [
-            'net_cents' => $net,
-            'vat_cents' => RGPD_INVOICE_SHARE_CENTS - $net,
-            'gross_cents' => RGPD_INVOICE_SHARE_CENTS,
-            'vat_label' => 'TVA 20 %.',
         ];
     }
 
