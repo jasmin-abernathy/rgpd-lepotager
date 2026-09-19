@@ -35,7 +35,7 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
     <h2><a href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web ↗</a></h2>
     <ul>
       <li>Nom commercial : Le Potager du Web</li>
-      <li>Entrepreneur : Jasmin Lévêque</li>
+      <li>Entrepreneur : Juliane Lévêque</li>
       <li>Forme juridique : entrepreneur individuel</li>
       <li>SIREN : 808 087 399</li>
       <li>SIRET : 808 087 399 00032</li>
