@@ -263,5 +263,6 @@ body{background:var(--bg);color:var(--ink);font-family:Montserrat,Inter,ui-sans-
 .billing-fields strong{display:block}
 .billing-fields p{margin:.25rem 0 0;color:var(--muted);font-size:.84rem}
 .invoice-downloads{display:grid;gap:10px;margin:22px 0}
+.invoice-downloads p{margin:0;color:var(--muted);font-size:.9rem}
 .invoice-downloads .button{width:fit-content}
 .invoice-pending{margin:18px 0;padding:12px 14px;border-left:4px solid var(--admin-red);background:#f5f4f0;border-radius:10px;color:var(--muted)}

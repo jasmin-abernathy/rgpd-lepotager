@@ -44,4 +44,8 @@ jobs:
           grep -Fq "TVA non applicable, art. 293 B du CGI." includes/invoice-runtime.php
           ! grep -Fq "'vat_mode' => 'vat20'" includes/invoice-runtime.php
           test -f facture.php
+          grep -Fq "Content-Type: application/pdf" facture.php
+          grep -Fq "Content-Disposition: attachment" facture.php
+          grep -Fq "Téléchargez vos deux factures" retour-paiement.php
+          grep -Fq "Télécharger la facture PDF" retour-paiement.php
           ! grep -RInE "31000|54000" paiement.php includes/payment-runtime.php includes/invoice-runtime.php retour-paiement.php facture.php
