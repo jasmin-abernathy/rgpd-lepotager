@@ -97,16 +97,12 @@ Les PDF sont générés uniquement après confirmation Stancer et stockés hors 
 `/home/sc1leja3715/stancer-private/private/rgpd-invoices`.
 Le retour de paiement fournit deux liens protégés vers `facture.php`.
 
-### Régime TVA : verrou de sécurité
+### Régime TVA
 
-Le générateur refuse d’émettre une facture définitive tant que le régime TVA de chaque EI n’est pas explicitement configuré dans le fichier privé Stancer :
+Les deux entreprises sont actuellement en **franchise en base de TVA**.
 
-```php
-'rgpd_invoice_potager_vat_mode' => 'franchise', // ou 'vat20'
-'rgpd_invoice_prestadmin_vat_mode' => 'franchise', // ou 'vat20'
-```
+Les deux factures de 75 € sont donc émises **sans TVA**, avec la mention :
 
-- `franchise` : 75 € sans TVA avec la mention « TVA non applicable, art. 293 B du CGI » ;
-- `vat20` : 75 € TTC, soit 62,50 € HT + 12,50 € de TVA.
+> TVA non applicable, art. 293 B du CGI.
 
-Ce verrou évite de déduire le régime de TVA d’un simple statut d’entrepreneur individuel ou de micro-entreprise.
+Le générateur fixe ce régime directement pour Le Potager du Web et Prestadmin. Il n’attend plus de paramètre TVA dans la configuration privée.
