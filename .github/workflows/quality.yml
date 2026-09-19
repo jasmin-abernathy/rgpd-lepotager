@@ -1,0 +1,39 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*.php"
+      - "includes/**"
+      - "assets/**"
+      - ".github/workflows/quality.yml"
+  pull_request:
+    paths:
+      - "*.php"
+      - "includes/**"
+      - "assets/**"
+      - ".github/workflows/quality.yml"
+
+concurrency:
+  group: rgpd-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: Validate JavaScript
+        run: node --check assets/app.js
+      - name: Validate PHP
+        run: find . -maxdepth 2 -type f -name '*.php' -not -path './cron/*' -print0 | xargs -0 -n1 php -l
+      - name: Guard shared Stancer configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq "/home/sc1leja3715/stancer-private/private/stancer-config.php" includes/payment-runtime.php
+          ! grep -RInE 's(test|prod)_[A-Za-z0-9]{20,}' . --exclude-dir=.git
+          grep -Fq "RGPD_PAYMENT_PRICE_CENTS = 15000" includes/payment-runtime.php
+          ! grep -RInE "31000|54000" paiement.php includes/payment-runtime.php retour-paiement.php
