@@ -36,4 +36,11 @@ jobs:
           grep -Fq "/home/sc1leja3715/stancer-private/private/stancer-config.php" includes/payment-runtime.php
           ! grep -RInE 's(test|prod)_[A-Za-z0-9]{20,}' . --exclude-dir=.git
           grep -Fq "RGPD_PAYMENT_PRICE_CENTS = 15000" includes/payment-runtime.php
-          ! grep -RInE "31000|54000" paiement.php includes/payment-runtime.php retour-paiement.php
+          grep -Fq "RGPD_INVOICE_SHARE_CENTS = 7500" includes/invoice-runtime.php
+          grep -Fq "808 087 399 00032" includes/invoice-runtime.php
+          grep -Fq "944 326 917 00019" includes/invoice-runtime.php
+          grep -Fq "/home/sc1leja3715/stancer-private/private/rgpd-invoices" includes/invoice-runtime.php
+          grep -Fq "rgpd_invoice_potager_vat_mode" includes/invoice-runtime.php
+          grep -Fq "rgpd_invoice_prestadmin_vat_mode" includes/invoice-runtime.php
+          test -f facture.php
+          ! grep -RInE "31000|54000" paiement.php includes/payment-runtime.php includes/invoice-runtime.php retour-paiement.php facture.php

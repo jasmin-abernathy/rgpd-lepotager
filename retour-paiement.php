@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 define('RGPD_PAYMENT_BOOTSTRAP', true);
 require_once __DIR__ . '/includes/payment-runtime.php';
+require_once __DIR__ . '/includes/invoice-runtime.php';
 $siteConfig = require __DIR__ . '/config.php';
 
 header('X-Content-Type-Options: nosniff');
@@ -28,6 +29,19 @@ if ($record !== [] && $state !== '' && hash_equals((string)($record['return_stat
             $record['status'] = 'paid';
             $record['paid_at'] = $record['paid_at'] ?? time();
             $record['payment_id'] = $paymentId;
+
+            if (empty($record['invoices']['potager']) || empty($record['invoices']['prestadmin'])) {
+                try {
+                    $record['invoices'] = rgpd_invoice_generate_pair($id, $record);
+                    $record['invoice_status'] = 'generated';
+                    unset($record['invoice_error']);
+                } catch (Throwable $invoiceError) {
+                    $record['invoice_status'] = 'pending_configuration';
+                    $record['invoice_error'] = $invoiceError->getMessage();
+                    error_log('[RGPD factures] ' . $invoiceError->getMessage());
+                }
+            }
+
             if (empty($record['notification_attempted_at'])) {
                 rgpd_payment_notify($siteConfig, $id, $record);
                 $record['notification_attempted_at'] = time();
@@ -60,7 +74,7 @@ $message = $details['kind'] === 'success'
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title><?=htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')?> — RGPD au propre</title>
-  <link rel="stylesheet" href="assets/style.css?v=3">
+  <link rel="stylesheet" href="assets/style.css?v=4">
 </head>
 <body>
 <main class="payment-page">
@@ -73,8 +87,18 @@ $message = $details['kind'] === 'success'
       <div class="payment-meta">
         <p>Référence : <strong><?=htmlspecialchars($id, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')?></strong></p>
         <p>Prestation : <strong>Diagnostic personnalisé RGPD</strong></p>
-        <p>Montant : <strong>150,00 €</strong></p>
+        <p>Montant réglé : <strong>150,00 €</strong></p>
+        <p>Répartition de facturation : <strong>75,00 € Prestadmin + 75,00 € Le Potager du Web</strong></p>
       </div>
+      <?php if (!empty($record['invoices']['potager']) && !empty($record['invoices']['prestadmin'])): ?>
+      <div class="invoice-downloads">
+        <strong>Vos deux factures</strong>
+        <a class="button button-ghost" href="facture.php?d=<?=rawurlencode($id)?>&amp;state=<?=rawurlencode($state)?>&amp;issuer=potager">Facture Le Potager du Web · 75 €</a>
+        <a class="button button-ghost" href="facture.php?d=<?=rawurlencode($id)?>&amp;state=<?=rawurlencode($state)?>&amp;issuer=prestadmin">Facture Prestadmin · 75 €</a>
+      </div>
+      <?php elseif ($details['kind'] === 'success'): ?>
+      <p class="invoice-pending">Les deux factures de 75 € sont rattachées à cette commande et seront mises à disposition dès finalisation administrative.</p>
+      <?php endif; ?>
       <?php endif; ?>
       <p><a class="button" href="./">Retour à RGPD au propre</a></p>
     </section>

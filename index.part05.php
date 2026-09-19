@@ -20,6 +20,22 @@
                     <label>Téléphone
                         <input type="tel" name="phone" autocomplete="tel" maxlength="40">
                     </label>
+                    <div class="full billing-fields" aria-labelledby="billing-fields-title">
+                        <strong id="billing-fields-title">Facturation · uniquement si vous payez en ligne</strong>
+                        <p>Ces informations servent à générer les deux factures de 75 € après confirmation du paiement.</p>
+                    </div>
+                    <label class="full">Adresse de facturation
+                        <input type="text" name="billing_address" autocomplete="street-address" maxlength="220" data-payment-required>
+                    </label>
+                    <label>Code postal
+                        <input type="text" name="billing_postcode" autocomplete="postal-code" maxlength="16" data-payment-required>
+                    </label>
+                    <label>Ville
+                        <input type="text" name="billing_city" autocomplete="address-level2" maxlength="120" data-payment-required>
+                    </label>
+                    <label class="full">SIREN de la structure
+                        <input type="text" name="billing_siren" inputmode="numeric" maxlength="14" placeholder="Facultatif si vous êtes un particulier">
+                    </label>
                     <label class="full">Un détail utile à ajouter ?
                         <textarea name="message" rows="4" maxlength="2500" placeholder="Facultatif"></textarea>
                     </label>
@@ -32,7 +48,7 @@
 
                 <div class="diagnostic-payment-note">
                     <strong>Diagnostic personnalisé · 150 €</strong>
-                    <span>Paiement ponctuel par carte via Stancer. Aucun abonnement ni prélèvement récurrent.</span>
+                    <span>Paiement ponctuel par carte via Stancer. Après confirmation, deux factures distinctes de 75 € sont préparées : une Prestadmin et une Le Potager du Web. Aucun abonnement ni prélèvement récurrent.</span>
                 </div>
 
                 <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
@@ -48,6 +64,6 @@
     </section>
 </div>
 
-<script src="assets/app.js?v=3" defer></script>
+<script src="assets/app.js?v=4" defer></script>
 </body>
 </html>

@@ -168,7 +168,10 @@ function rgpd_payment_notify(array $siteConfig, string $id, array $record): void
         . "E-mail : {$email}\n"
         . "Téléphone : " . ((string)($record['phone'] ?? '') ?: '—') . "\n"
         . "Origine : " . strtoupper($source) . "\n"
-        . "Montant : 150,00 €\n\n"
+        . "Montant réglé : 150,00 €\n"
+        . "Ventilation : 75,00 € Le Potager du Web + 75,00 € Prestadmin\n"
+        . (!empty($record['invoices']['potager']['number']) ? "Facture Potager : " . (string)$record['invoices']['potager']['number'] . "\n" : "Facture Potager : en attente\n")
+        . (!empty($record['invoices']['prestadmin']['number']) ? "Facture Prestadmin : " . (string)$record['invoices']['prestadmin']['number'] . "\n\n" : "Facture Prestadmin : en attente\n\n")
         . "Résumé du diagnostic\n" . (string)($record['summary'] ?? '') . "\n\n"
         . "Message\n" . ((string)($record['message'] ?? '') ?: '—') . "\n";
     $headers = [

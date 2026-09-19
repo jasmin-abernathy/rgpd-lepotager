@@ -203,6 +203,25 @@
       privacy.focus();
       return false;
     }
+    for (const field of form.querySelectorAll('[data-payment-required]')) {
+      if (!String(field.value || '').trim()) {
+        field.setCustomValidity('Ce champ est nécessaire pour établir les factures.');
+        field.reportValidity();
+        field.addEventListener('input', () => field.setCustomValidity(''), {once:true});
+        return false;
+      }
+    }
+    const siren = form.querySelector('[name="billing_siren"]');
+    if (siren && siren.value.trim()) {
+      const normalized = siren.value.replace(/\s+/g, '');
+      if (!/^\d{9}$/.test(normalized)) {
+        siren.setCustomValidity('Le SIREN doit contenir 9 chiffres.');
+        siren.reportValidity();
+        siren.addEventListener('input', () => siren.setCustomValidity(''), {once:true});
+        return false;
+      }
+      siren.value = normalized;
+    }
     return true;
   }
 

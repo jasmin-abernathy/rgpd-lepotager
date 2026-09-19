@@ -78,3 +78,35 @@ Le paiement :
 - vérifie l'état du paiement via l'API Stancer au retour ;
 - stocke temporairement le dossier hors webroot dans `/home/sc1leja3715/stancer-private/private/rgpd-payments` ;
 - notifie les deux partenaires seulement après confirmation du paiement.
+
+
+## Double facturation du diagnostic à 150 €
+
+Le diagnostic personnalisé est ventilé **50 / 50** après confirmation du paiement :
+
+- **Le Potager du Web — Juliane Lévêque, EI** : 75 € — SIRET **808 087 399 00032** ;
+- **Prestadmin — Camille Poirel, EI** : 75 € — SIRET **944 326 917 00019**.
+
+Les deux émetteurs sont configurés à l’adresse `3 rue Brunehaut, 57000 Metz`.
+
+Chaque prestataire dispose d’une série chronologique indépendante dédiée à ce tunnel :
+- `LPW-RGPD-AAAA-0001` ;
+- `PREST-RGPD-AAAA-0001`.
+
+Les PDF sont générés uniquement après confirmation Stancer et stockés hors webroot dans
+`/home/sc1leja3715/stancer-private/private/rgpd-invoices`.
+Le retour de paiement fournit deux liens protégés vers `facture.php`.
+
+### Régime TVA : verrou de sécurité
+
+Le générateur refuse d’émettre une facture définitive tant que le régime TVA de chaque EI n’est pas explicitement configuré dans le fichier privé Stancer :
+
+```php
+'rgpd_invoice_potager_vat_mode' => 'franchise', // ou 'vat20'
+'rgpd_invoice_prestadmin_vat_mode' => 'franchise', // ou 'vat20'
+```
+
+- `franchise` : 75 € sans TVA avec la mention « TVA non applicable, art. 293 B du CGI » ;
+- `vat20` : 75 € TTC, soit 62,50 € HT + 12,50 € de TVA.
+
+Ce verrou évite de déduire le régime de TVA d’un simple statut d’entrepreneur individuel ou de micro-entreprise.
