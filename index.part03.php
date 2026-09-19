@@ -5,8 +5,7 @@
             </p>
 
             <p class="billing-note">
-                <strong>Facturation :</strong> l'offre est présentée comme un parcours commun, mais <a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> et <a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>
-                émettent chacun leur propre devis/facture pour leur partie. Le total affiché correspond au coût cumulé de l'accompagnement.
+                <strong>Facturation :</strong> le diagnostic personnalisé ponctuel à 150 € peut être réglé en ligne par carte via Stancer et est encaissé par <a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>. Pour les packs, <a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> et Le Potager restent deux entreprises indépendantes et émettent chacun leur propre devis/facture pour leur partie. Les suivis annuels ne sont pas proposés au paiement dans ce parcours.
             </p>
         </div>
     </section>
