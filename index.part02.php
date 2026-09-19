@@ -38,7 +38,7 @@
                 </article>
                 <article>
                     <span>02</span>
-                    <h3>Diagnostic humain</h3>
+                    <h3>Diagnostic personnalisé</h3>
                     <p>Pour 150 €, nous vérifions le contexte réel et produisons un plan d'action clair avant de proposer des corrections.</p>
                 </article>
                 <article>
@@ -69,7 +69,7 @@
                 <article class="price-card">
                     <div>
                         <span class="pill neutral">Point de départ</span>
-                        <h3>Diagnostic humain</h3>
+                        <h3>Diagnostic personnalisé</h3>
                         <p class="price">150 €</p>
                     </div>
                     <ul>
@@ -78,7 +78,7 @@
                         <li>Plan d'action priorisé</li>
                         <li>Orientation vers le bon pack si nécessaire</li>
                     </ul>
-                    <button class="text-button js-open-diagnostic" type="button">Commencer par le diagnostic →</button>
+                    <button class="text-button js-open-diagnostic" type="button">Réserver le diagnostic personnalisé →</button>
                 </article>
 
                 <article class="price-card featured">

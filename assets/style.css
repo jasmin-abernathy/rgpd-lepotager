@@ -234,3 +234,23 @@ body{background:var(--bg);color:var(--ink);font-family:Montserrat,Inter,ui-sans-
 @media(max-width:720px){.identity-grid,.ptm-status{grid-template-columns:1fr}.nav{min-height:66px}.identity-card{min-height:126px}.ptm-screen-body{grid-template-columns:80px 1fr}}
 
 .origin-provider-pill{text-decoration:none}.origin-provider-pill:hover{text-decoration:underline;text-underline-offset:.18em}
+
+
+/* Paiement ponctuel du diagnostic personnalisé */
+.diagnostic-payment-note{
+  display:grid;gap:4px;margin-top:18px;padding:14px 16px;border:1px solid var(--line);
+  border-left:4px solid var(--green);border-radius:12px;background:#fff;color:var(--ink)
+}
+.diagnostic-payment-note strong{font-size:.92rem}
+.diagnostic-payment-note span{font-size:.82rem;color:var(--muted)}
+.button-payment{background:var(--green);color:#fff}
+.button-payment:disabled{opacity:.6;cursor:wait;transform:none}
+.payment-page{padding:72px 0;min-height:70vh}
+.payment-card{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+.payment-card h1{font-size:clamp(2.2rem,5vw,4rem)}
+.payment-state{display:inline-flex;margin-bottom:16px;padding:.4rem .7rem;border-radius:999px;background:var(--green-soft);color:var(--green);font-weight:850;font-size:.78rem}
+.payment-state.error{background:#f4e5e5;color:var(--danger)}
+.payment-state.pending{background:#f4efe1;color:#765a1c}
+.payment-meta{display:grid;gap:8px;margin:24px 0;padding:18px;border:1px solid var(--line);border-radius:12px;background:#faf9f6}
+.payment-meta p{margin:0}
+@media(max-width:620px){.wizard-actions{flex-wrap:wrap}.wizard-actions .button{width:100%}}

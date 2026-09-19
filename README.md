@@ -62,3 +62,19 @@ GitHub doit rester la source de vérité pour le **code**. Les données génér�
 - `cron/private/` est également bloqué par `.htaccess`.
 - `config.php` est bloqué par le `.htaccess` racine.
 - Aucun mot de passe réel ne doit être commité.
+
+
+## Paiement ponctuel du diagnostic personnalisé
+
+Le diagnostic précédemment libellé « diagnostic humain » est désormais nommé **diagnostic personnalisé**.
+
+Seule cette prestation ponctuelle à **150 €** est actuellement payable directement sur le site. Les suivis annuels restent hors de ce parcours et les packs à 690/990 € conservent leur logique de devis/factures séparées entre Prestadmin et Le Potager.
+
+Le paiement :
+- utilise le compte Stancer du Potager ;
+- lit la clé exclusivement depuis `/home/sc1leja3715/stancer-private/private/stancer-config.php` ;
+- fixe le montant de 150 € côté serveur ;
+- exige une carte et le 3-D Secure ;
+- vérifie l'état du paiement via l'API Stancer au retour ;
+- stocke temporairement le dossier hors webroot dans `/home/sc1leja3715/stancer-private/private/rgpd-payments` ;
+- notifie les deux partenaires seulement après confirmation du paiement.
