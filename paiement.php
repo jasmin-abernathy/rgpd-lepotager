@@ -12,7 +12,7 @@ header('Cache-Control: private, no-store, no-cache, must-revalidate, max-age=0')
 function payment_fail(string $message, int $status = 400): never
 {
     http_response_code($status);
-    ?><!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Paiement indisponible — RGPD au propre</title><link rel="stylesheet" href="assets/style.css?v=3"></head><body><main class="payment-page"><div class="shell"><section class="payment-card"><span class="payment-state error">Paiement non lancé</span><h1>Le paiement n’a pas démarré.</h1><p><?=htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')?></p><p><a class="button" href="./#diagnostic">Retour au diagnostic</a></p></section></div></main></body></html><?php
+    ?><!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Paiement indisponible — RGPD au propre</title><link rel="stylesheet" href="assets/style.css?v=4"></head><body><main class="payment-page"><div class="shell"><section class="payment-card"><span class="payment-state error">Paiement non lancé</span><h1>Le paiement n’a pas démarré.</h1><p><?=htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')?></p><p><a class="button" href="./#diagnostic">Retour au diagnostic</a></p></section></div></main></body></html><?php
     exit;
 }
 
