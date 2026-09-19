@@ -31,6 +31,10 @@ try {
     $company = rgpd_payment_clean((string)($_POST['company'] ?? ''), 160);
     $email = filter_var(trim((string)($_POST['email'] ?? '')), FILTER_VALIDATE_EMAIL);
     $phone = rgpd_payment_clean((string)($_POST['phone'] ?? ''), 40);
+    $billingAddress = rgpd_payment_clean((string)($_POST['billing_address'] ?? ''), 220);
+    $billingPostcode = rgpd_payment_clean((string)($_POST['billing_postcode'] ?? ''), 16);
+    $billingCity = rgpd_payment_clean((string)($_POST['billing_city'] ?? ''), 120);
+    $billingSiren = preg_replace('/\\s+/', '', rgpd_payment_clean((string)($_POST['billing_siren'] ?? ''), 14)) ?? '';
     $message = rgpd_payment_clean((string)($_POST['message'] ?? ''), 2500);
     $summary = rgpd_payment_clean((string)($_POST['summary'] ?? ''), 4500);
     $recommendation = rgpd_payment_clean((string)($_POST['recommendation'] ?? ''), 120);
@@ -38,6 +42,8 @@ try {
     $privacy = (string)($_POST['privacy_ack'] ?? '') === '1';
 
     if ($name === '' || !$email || !$privacy) throw new InvalidArgumentException('Nom, e-mail et accord de confidentialité requis.');
+    if ($billingAddress === '' || $billingPostcode === '' || $billingCity === '') throw new InvalidArgumentException('Adresse de facturation requise pour le paiement.');
+    if ($billingSiren !== '' && !preg_match('/^\\d{9}$/', $billingSiren)) throw new InvalidArgumentException('SIREN client invalide.');
     if (strlen($summary) < 20) throw new InvalidArgumentException('Le diagnostic doit être complété avant le paiement.');
     if (!in_array($source, ['prestadmin','potager','direct'], true)) $source = 'direct';
 
@@ -73,6 +79,10 @@ try {
         'company' => $company,
         'email' => (string)$email,
         'phone' => $phone,
+        'billing_address' => $billingAddress,
+        'billing_postcode' => $billingPostcode,
+        'billing_city' => $billingCity,
+        'billing_siren' => $billingSiren,
         'message' => $message,
         'summary' => $summary,
         'recommendation' => $recommendation,
