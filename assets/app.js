@@ -22,6 +22,15 @@
   let current = 0;
   let lastFocused = null;
 
+  const focusableSelector = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled]):not([type="hidden"])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(',');
+
   const labels = {
     cms: 'CMS / site',
     tools: 'Outils / usages',
@@ -56,7 +65,32 @@
   }
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !modal.hidden) closeModal();
+    if (modal.hidden) return;
+    if (e.key === 'Escape') {
+      closeModal();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+
+    const dialog = modal.querySelector('[role="dialog"]');
+    if (!dialog) return;
+    const focusable = [...dialog.querySelectorAll(focusableSelector)].filter(element =>
+      !element.hidden && element.getAttribute('aria-hidden') !== 'true' && element.getClientRects().length > 0
+    );
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    } else if (!dialog.contains(document.activeElement)) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 
   function showStep(index) {
@@ -100,6 +134,7 @@
       });
       if (!ok) {
         els[0]?.focus();
+        els[0]?.reportValidity();
         return false;
       }
     }
