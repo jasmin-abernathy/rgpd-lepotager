@@ -174,8 +174,8 @@
         price: '990 €',
         code: 'Pack Complet 990 €',
         text: cms === 'WordPress'
-          ? 'Plusieurs flux ou points d’organisation semblent se cumuler. Le Pack Complet permet de traiter la partie documentaire, les prestataires et l’audit technique. Sur WordPress, Pixel Trackers Manager peut être installé dans le site et utilisé lors des revues planifiées ; il ne fournit pas encore de surveillance distante automatique.'
-          : 'Plusieurs flux ou points d’organisation semblent se cumuler. Le Pack Complet permet une revue plus approfondie. Pixel Trackers Manager n’est pas inclus car il est réservé à WordPress.'
+          ? 'Plusieurs flux ou points d’organisation semblent se cumuler. Le Pack Complet permet de traiter la partie documentaire, les prestataires et l’audit technique. Sur WordPress, Dendrila Privacy peut être installé dans le site et utilisé lors des revues planifiées ; il ne fournit pas encore de surveillance distante automatique.'
+          : 'Plusieurs flux ou points d’organisation semblent se cumuler. Le Pack Complet permet une revue plus approfondie. Dendrila Privacy n’est pas inclus car il est réservé à WordPress.'
       };
     }
 
@@ -184,8 +184,8 @@
       price: '690 €',
       code: 'Pack Essentiel 690 €',
       text: cms === 'WordPress'
-        ? 'Votre situation paraît compatible avec une remise au propre ciblée. Sur WordPress, Pixel Trackers Manager peut être installé et configuré dans le site pour être consulté lors des revues planifiées ; il ne remonte pas encore les informations à distance.'
-        : 'Votre situation paraît compatible avec une remise au propre ciblée. La partie technique sera traitée sans Pixel Trackers Manager si le site n’est pas sous WordPress.'
+        ? 'Votre situation paraît compatible avec une remise au propre ciblée. Sur WordPress, Dendrila Privacy peut être installé et configuré dans le site pour être consulté lors des revues planifiées ; il ne remonte pas encore les informations à distance.'
+        : 'Votre situation paraît compatible avec une remise au propre ciblée. La partie technique sera traitée sans Dendrila Privacy si le site n’est pas sous WordPress.'
     };
   }
 
