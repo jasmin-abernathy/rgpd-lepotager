@@ -1,6 +1,6 @@
                 <div class="dual-role dual-role-potager">
                     <a href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web ↗</a>
-                    <span>site · formulaires · traceurs · WordPress · SPIP · Grav · Privacy Tracker Manager</span>
+                    <span>site · formulaires · traceurs · WordPress · SPIP · Grav · Dendrila Privacy</span>
                 </div>
                 <div class="origin-route"><span>besoin</span><b>→</b><span>bonne compétence</span><b>→</b><span>facture séparée</span></div>
             </aside>
@@ -49,7 +49,7 @@
                 <article>
                     <span>04</span>
                     <h3>Suivi</h3>
-                    <p>Privacy Tracker Manager (PTM) est utilisé sur WordPress pendant les revues planifiées. Les portages SPIP et Grav sont en développement avec des niveaux de maturité différents : SPIP sait déjà réaliser un scan progressif et inventorier les plugins ; Grav dispose pour l'instant d'une base locale et d'un inventaire, tandis que le premier scan du HTML rendu reste à implémenter puis à valider. Les revues restent humaines et aucune version ne transmet encore automatiquement ses résultats à distance.</p>
+                    <p><a class="provider-link potager-link-dark" href="https://wordpress.org/plugins/dendrila-privacy/" target="_blank" rel="noopener noreferrer">Dendrila Privacy</a> est utilisé sur WordPress pendant les revues planifiées : analyse des traceurs et services tiers, aide documentaire et consentement optionnel. Les données d’audit restent locales par défaut. Les outils SPIP et Grav sont des développements distincts, encore à valider pour un usage de production ; les revues restent humaines et aucun de ces outils ne transmet automatiquement les résultats d’audit au Potager.</p>
                 </article>
             </div>
         </div>
@@ -90,7 +90,7 @@
                     <ul>
                         <li><a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> : registre de base, conservation, procédures, organisation documentaire</li>
                         <li><a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a> : formulaires, traceurs, confidentialité et corrections techniques</li>
-                        <li>WordPress : installation et configuration de Privacy Tracker Manager (PTM) dans le site ; consultation lors des revues prévues, sans surveillance distante automatique</li>
+                        <li>WordPress : installation et configuration de <a href="https://wordpress.org/plugins/dendrila-privacy/" target="_blank" rel="noopener noreferrer">Dendrila Privacy</a> ; analyse locale lors des revues, documentation vie privée et consentement optionnel, sans télémétrie publicitaire ni surveillance distante automatique</li>
                         <li>SPIP et Grav : portages en développement, étudiés ou testés uniquement au cas par cas tant que leur validation de production n'est pas terminée</li>
                         <li>Suivi Essentiel possible : 310 €/an</li>
                     </ul>
