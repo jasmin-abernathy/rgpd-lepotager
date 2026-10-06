@@ -14,27 +14,27 @@
         <div class="shell wp-grid">
             <div class="ptm-copy">
                 <p class="eyebrow">WordPress · SPIP · Grav · capacité actuelle</p>
-                <h2>Privacy Tracker Manager se décline sur plusieurs CMS.<br><em>Le niveau de maturité n'est pas le même partout.</em></h2>
+                <h2>Dendrila Privacy est public sur WordPress.<br><em>Les autres CMS restent des chantiers distincts.</em></h2>
                 <p>
-                    Privacy Tracker Manager (PTM) est développé par
-                    <a class="provider-link potager-link-dark" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>.
-                    La version WordPress est celle utilisée dans les prestations actuelles. Le portage SPIP, encore en développement, sait déjà inventorier les plugins actifs et lancer un scan progressif du HTML rendu, mais doit encore être validé sur une copie exécutable avant production. Le portage Grav dispose d'une première base locale, d'un inventaire de plugins et des règles PTM ; son scanner n'est pas encore actif et il reste lui aussi réservé au développement.
+                    <a class="provider-link potager-link-dark" href="https://wordpress.org/plugins/dendrila-privacy/" target="_blank" rel="noopener noreferrer">Dendrila Privacy</a> est l’extension WordPress open source du
+                    <a class="provider-link potager-link-dark" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Potager du Web</a>.
+                    La version 0.0.5 peut analyser le contenu public, repérer des traceurs et services tiers, distinguer les constats techniques des points à vérifier humainement, aider à maintenir les pages de vie privée et gérer un consentement optionnel désactivé par défaut. Les résultats d’audit, réglages et réponses de l’assistant restent dans WordPress par défaut ; seules les recherches d’organisation lancées explicitement peuvent interroger les registres publics documentés.
                 </p>
 
                 <div class="ptm-status">
-                    <div class="ptm-status-ok"><b>✓ Aujourd’hui</b><span>WordPress : utilisation dans le back-office lors des contrôles prévus. SPIP : inventaire local et scan progressif en développement. Grav : première baseline locale et inventaire disponibles.</span></div>
-                    <div class="ptm-status-no"><b>× Pas encore</b><span>Pas de validation production des portages SPIP et Grav, pas de surveillance automatique 24/7 et pas de remontée automatique vers un tableau de bord externe sur aucune version.</span></div>
+                    <div class="ptm-status-ok"><b>✓ Aujourd’hui</b><span>WordPress : Dendrila Privacy 0.0.5 est publié sur WordPress.org. Analyse standard ou complète, documentation, consentement optionnel et recherches d’organisation explicites sont disponibles.</span></div>
+                    <div class="ptm-status-no"><b>× À ne pas confondre</b><span>Les travaux SPIP et Grav restent des outils séparés en développement. Ils ne sont pas présentés comme des déclinaisons publiques de Dendrila Privacy ni comme des solutions de production validées.</span></div>
                 </div>
 
-                <p class="ptm-human"><strong>Les formules annuelles rémunèrent donc des revues et interventions humaines planifiées.</strong> Les portages SPIP et Grav ne sont pas présentés comme des solutions de production tant que leurs validations respectives ne sont pas terminées.</p>
+                <p class="ptm-human"><strong>Les formules annuelles rémunèrent toujours des revues et interventions humaines planifiées.</strong> Dendrila Privacy apporte des constats techniques et des outils de documentation ; il ne certifie pas à lui seul la conformité RGPD et ne remplace pas une analyse juridique adaptée au contexte.</p>
             </div>
 
-            <div class="ptm-card ptm-screen" aria-label="Schéma de fonctionnement actuel de Privacy Tracker Manager sur WordPress">
+            <div class="ptm-card ptm-screen" aria-label="Schéma de fonctionnement actuel de Dendrila Privacy sur WordPress">
                 <div class="ptm-screen-top"><span></span><span></span><span></span><small>WordPress du client</small></div>
                 <div class="ptm-screen-body">
-                    <div class="ptm-sidebar"><span>Tableau de bord</span><span>Pages</span><span>Extensions</span><b>Privacy Tracker Manager</b></div>
+                    <div class="ptm-sidebar"><span>Tableau de bord</span><span>Pages</span><span>Extensions</span><b>Dendrila Privacy</b></div>
                     <div class="ptm-panel">
-                        <small>REVUE PLANIFIÉE</small><strong>Privacy Tracker Manager</strong>
+                        <small>REVUE PLANIFIÉE</small><strong>Dendrila Privacy</strong>
                         <i></i><i class="short"></i>
                         <div class="ptm-local">Contrôle depuis l’administration WordPress</div>
                         <div class="ptm-remote">× Aucune liaison distante automatique dans la version actuelle</div>
