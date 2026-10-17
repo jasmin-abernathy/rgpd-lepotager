@@ -197,6 +197,10 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}
 .special-block{margin-top:28px}.special-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:16px}
 .special-heading h3{margin:0;font-family:var(--title-font);font-size:26px;line-height:1.1}.special-heading p{max-width:620px;margin:0}
 .special-cards .card{border-style:dashed}
+.dpo-filter{display:grid;gap:5px;margin:0 0 18px;max-width:330px}
+.dpo-filter label{font-size:13px;font-weight:800;color:var(--muted)}
+.dpo-filter select{width:100%;min-width:0;margin:0}
+.special-cards .meta:empty{display:none}
 .legal-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .legal-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px}
 .legal-card .legal-tag{display:inline-flex;margin-bottom:12px;padding:5px 9px;border-radius:999px;background:var(--soft);color:var(--deep);font-size:11px;font-weight:850}

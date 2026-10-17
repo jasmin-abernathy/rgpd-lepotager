@@ -48,6 +48,27 @@ check_same($ge['legal_summaries'][0]['n'],2,'Filtre Grand Est');
 check_same($ge['legal_summaries'][0]['mean'],600.0,'Moyenne Grand Est');
 check_same($ge['legal_summaries'][1]['mean'],900.0,'Tarifs identiques restent calculables');
 check_same(count($mo['legal_summaries']),0,'Aucun singleton ne doit être affiché en Moselle');
-check_same(count($fr['dpo_summaries']),1,'Prestations DPO maintenues à part');
+check_same(count($fr['dpo_summaries']),1,'Prestations DPO maintenues à part'); 
+// Quatre valeurs, deux unités : le regroupement ne doit jamais moyenner
+// ensemble des mensualités, des journées ou des forfaits différents.
+$dpoRows=[
+    offer('J','dpo','DPO externalisé','TPE','EUR/mois',180,'grand-est','57'),
+    offer('K','dpo','DPO externalisé','PME','EUR/mois',320,'grand-est','67'),
+    offer('L','dpo','DPO externalisé','PME','EUR/an',2400,'grand-est','57'),
+    offer('M','dpo','DPO externalisé','TPE','EUR/mois',100,'ile-de-france','75'),
+];
+$dpoFrance=rgpd_build_view($dpoRows,'france');
+$dpoGrandEst=rgpd_build_view($dpoRows,'grand-est');
+check_same(count($dpoFrance['dpo_summaries']),3,'Segmentation DPO conserve les types de structures');
+check_same(count($dpoFrance['dpo_overall_summaries']),2,'Separation des unités DPO');
+$monthly=array_values(array_filter($dpoFrance['dpo_overall_summaries'],fn($s)=>$s['unit']==='EUR/mois'))[0];
+check_same($monthly['client_segment'],'Toutes structures','Regroupement de clientele par defaut');
+check_same($monthly['n'],3,'Regroupement mensuel TPE et PME');
+check_same($monthly['mean'],200.0,'Moyenne simple de toutes les offres mensuelles');
+$monthlyGE=array_values(array_filter($dpoGrandEst['dpo_overall_summaries'],fn($s)=>$s['unit']==='EUR/mois'))[0];
+check_same($monthlyGE['mean'],250.0,'Filtre regional DPO');
+check_same($monthlyGE['n'],2,'Releves DPO Grand Est');
+check_same($dpoFrance['dpo_observation_count'],4,'Total DPO conserve');
+
 check_same(count($fr['source_groups'])>0,true,'Le registre des sources reste disponible');
 echo "OK : agrégation juridique et confidentialité des données publiques\n";

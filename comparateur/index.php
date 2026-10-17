@@ -29,7 +29,7 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Comparateur des tarifs RGPD — Prestadmin × Le Potager</title><meta name="description" content="Tarifs publics observés pour des prestations RGPD, avec moyennes, médianes et sources.">
 <link rel="canonical" href="https://rgpd.lepotager.org/comparateur/">
-<link rel="stylesheet" href="assets/style.css?v=stable-1746-plus">
+<link rel="stylesheet" href="assets/style.css?v=grouped-dpo-1">
 <link rel="stylesheet" href="../assets/site-header.css?v=2">
 <link rel="stylesheet" href="/assets/accessibility.css?v=2">
 <script defer src="/assets/accessibility.js?v=2"></script>
@@ -62,6 +62,10 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
     <div class="special-heading">
       <h3>DPO externalisés</h3>
       <p id="dpo-explanation" class="muted"></p>
+    </div>
+    <div class="dpo-filter">
+      <label for="dpo-segment">Type de structure (facultatif)</label>
+      <select id="dpo-segment" name="dpo-segment"><option value="all">Toutes les structures</option></select>
     </div>
     <div id="dpo-cards" class="cards special-cards"></div>
   </div>
@@ -96,4 +100,4 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
 <p class="muted source-intro">Les indépendants et les profils provenant d’une même plateforme sont anonymisés. Le tableau référence la source utilisée, pas les personnes observées.</p>
 <div class="table" id="releves"><table><thead><tr><th>Source</th><th>Nature</th><th>Périmètre relevé</th><th>Relevés</th><th>Statut</th><th>Date</th><th>Lien</th></tr></thead><tbody id="rows"></tbody></table></div></div></section>
 </main><footer><div class="shell foot"><div><strong>Prestadmin × Le Potager du Web</strong><br><span>Une offre commune, deux entreprises indépendantes.</span></div><div><a target="_blank" rel="noopener" href="https://www.prestadmin57.fr">Prestadmin ↗</a> · <a target="_blank" rel="noopener" href="https://www.lepotager.org">Le Potager ↗</a></div></div></footer>
-<script src="assets/app.js?v=legal-averages-1" defer></script></body></html>
+<script src="assets/app.js?v=grouped-dpo-1" defer></script></body></html>
