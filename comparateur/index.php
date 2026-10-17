@@ -49,7 +49,7 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
   <div class="head">
     <div>
       <p class="eyebrow">À comparer à part</p>
-      <h2>DPO externalisés & expertise juridique</h2>
+      <h2 id="separate-services-heading">DPO externalisés</h2>
     </div>
     <p class="muted">Ces prestations sont volontairement exclues des moyennes principales : elles ne correspondent pas au même niveau de mission que notre accompagnement.</p>
   </div>
@@ -70,7 +70,7 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
     <div id="dpo-cards" class="cards special-cards"></div>
   </div>
 
-  <div class="special-block legal-block">
+  <div class="special-block legal-block" id="legal-block" hidden>
     <div class="special-heading">
       <h3>Prestations des professionnels du droit</h3>
       <p class="muted">Prix moyens issus d’au moins deux tarifs publics comparables par prestation, clientèle et unité. Aucun prix individuel par cabinet n’est affiché. Ces montants restent exclus de la moyenne principale.</p>
@@ -100,4 +100,4 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
 <p class="muted source-intro">Les indépendants et les profils provenant d’une même plateforme sont anonymisés. Le tableau référence la source utilisée, pas les personnes observées.</p>
 <div class="table" id="releves"><table><thead><tr><th>Source</th><th>Nature</th><th>Périmètre relevé</th><th>Relevés</th><th>Statut</th><th>Date</th><th>Lien</th></tr></thead><tbody id="rows"></tbody></table></div></div></section>
 </main><footer><div class="shell foot"><div><strong>Prestadmin × Le Potager du Web</strong><br><span>Une offre commune, deux entreprises indépendantes.</span></div><div><a target="_blank" rel="noopener" href="https://www.prestadmin57.fr">Prestadmin ↗</a> · <a target="_blank" rel="noopener" href="https://www.lepotager.org">Le Potager ↗</a></div></div></footer>
-<script src="assets/app.js?v=grouped-dpo-1" defer></script></body></html>
+<script src="assets/app.js?v=hide-empty-legal-1" defer></script></body></html>
