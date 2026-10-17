@@ -7,12 +7,18 @@ on:
       - "*.php"
       - "includes/**"
       - "assets/**"
+      - "comparateur/**"
+      - "cron/lib-comparator.php"
+      - "tests/**"
       - ".github/workflows/quality.yml"
   pull_request:
     paths:
       - "*.php"
       - "includes/**"
       - "assets/**"
+      - "comparateur/**"
+      - "cron/lib-comparator.php"
+      - "tests/**"
       - ".github/workflows/quality.yml"
 
 concurrency:
@@ -29,6 +35,11 @@ jobs:
         run: node --check assets/app.js
       - name: Validate PHP
         run: find . -maxdepth 2 -type f -name '*.php' -not -path './cron/*' -print0 | xargs -0 -n1 php -l
+      - name: Validate comparator code and statistical grouping
+        run: |
+          node --check comparateur/assets/app.js
+          php -l cron/lib-comparator.php
+          php tests/comparator-legal-averages.php
       - name: Guard shared Stancer configuration
         shell: bash
         run: |

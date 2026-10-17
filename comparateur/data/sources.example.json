@@ -9,8 +9,8 @@
   },
   "our_offers": [],
   "views": {
-    "france": {"summaries": [], "dpo_summaries": [], "legal_offers": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0},
-    "grand-est": {"summaries": [], "dpo_summaries": [], "legal_offers": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0},
-    "moselle": {"summaries": [], "dpo_summaries": [], "legal_offers": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0}
+    "france": {"summaries": [], "dpo_summaries": [], "legal_summaries": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0},
+    "grand-est": {"summaries": [], "dpo_summaries": [], "legal_summaries": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0},
+    "moselle": {"summaries": [], "dpo_summaries": [], "legal_summaries": [], "source_groups": [], "underlying_observation_count": 0, "market_observation_count": 0, "dpo_observation_count": 0, "legal_observation_count": 0, "source_group_count": 0}
   }
 }

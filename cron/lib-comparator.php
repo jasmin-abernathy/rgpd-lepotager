@@ -69,9 +69,12 @@ function rgpd_build_view(array $obs,string $region): array {
     $items=array_values(array_filter($obs,fn($o)=>rgpd_region_match($o,$region)));
     $market=array_values(array_filter($items,fn($o)=>(($o['comparison_scope']??'market')==='market') && ($o['included']??true)));
     $dpo=array_values(array_filter($items,fn($o)=>(($o['comparison_scope']??'')==='dpo')));
-    $legal=array_values(array_filter($items,fn($o)=>(($o['comparison_scope']??'')==='legal')));
-    $legalOffers=[];foreach($legal as $o){$legalOffers[]=['provider'=>rgpd_public_provider($o),'provider_type'=>$o['provider_type'],'service_family'=>$o['service_family'],'client_segment'=>$o['client_segment'],'unit'=>$o['unit'],'value'=>$o['value'],'price_text'=>$o['price_text'],'checked'=>$o['checked'],'source'=>$o['source'],'note'=>$o['note']??''];}
-    return ['summaries'=>rgpd_summary($market),'dpo_summaries'=>rgpd_summary($dpo),'legal_offers'=>$legalOffers,'source_groups'=>rgpd_source_groups($items),
+    // Calculer les moyennes juridiques sans republier les prix par cabinet.
+    // Un groupe à n = 1 révélerait indirectement son tarif individuel.
+    $legal=array_values(array_filter($items,fn($o)=>(($o['comparison_scope']??'')==='legal')
+        && is_numeric($o['value']??null) && (float)$o['value']>0));
+    $legalSummaries=array_values(array_filter(rgpd_summary($legal),fn($s)=>$s['n']>=2));
+    return ['summaries'=>rgpd_summary($market),'dpo_summaries'=>rgpd_summary($dpo),'legal_summaries'=>$legalSummaries,'source_groups'=>rgpd_source_groups($items),
       'underlying_observation_count'=>count($items),'market_observation_count'=>count($market),'dpo_observation_count'=>count($dpo),'legal_observation_count'=>count($legal),'source_group_count'=>count(rgpd_source_groups($items))];
 }
 function rgpd_rebuild_public(string $base): array {
