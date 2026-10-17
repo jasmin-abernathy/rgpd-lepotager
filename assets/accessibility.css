@@ -1,31 +1,34 @@
-/* Accessible version for RGPD au propre. */
-.rgpd-global-a11y,.rgpd-a11y-floating{min-height:44px;padding:.55rem .8rem;border:2px solid #233b43;border-radius:8px;background:#fff;color:#17242a;font:700 .82rem/1.2 system-ui,sans-serif;cursor:pointer}
-.rgpd-a11y-floating{position:fixed;right:1rem;bottom:1rem;z-index:1000;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+/* Bouton-œil partagé par les versions Prestadmin, Potager et commune. */
+.rgpd-global-a11y,.rgpd-a11y-floating{
+  display:inline-grid;place-items:center;
+  width:48px;height:48px;min-width:48px;min-height:48px;flex:0 0 48px;
+  padding:0;border:2px solid #111;border-radius:50%;
+  background:#fff;color:#111;font:inherit;line-height:1;cursor:pointer;
+  box-shadow:none;transition:background-color .15s ease,color .15s ease;
+}
+.rgpd-global-a11y .rgpd-a11y-eye,.rgpd-a11y-floating .rgpd-a11y-eye{
+  display:block;width:24px;height:24px;flex:none;
+}
+.rgpd-global-a11y:hover,.rgpd-a11y-floating:hover{background:#eee}
+.rgpd-global-a11y[aria-pressed="true"],.rgpd-a11y-floating[aria-pressed="true"],
+.rgpd-global-a11y[aria-pressed="true"]:hover,.rgpd-a11y-floating[aria-pressed="true"]:hover{
+  background:#111;border-color:#111;color:#fff;
+}
+.rgpd-global-a11y:focus-visible,.rgpd-a11y-floating:focus-visible{
+  outline:4px solid #111;outline-offset:3px;
+}
+.rgpd-a11y-floating{
+  position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));
+  z-index:1000;box-shadow:0 4px 18px rgba(0,0,0,.18);
+}
+@media(max-width:420px){
+  .rgpd-global-a11y{width:46px;height:46px;min-width:46px;min-height:46px;flex-basis:46px}
+}
 html[data-rgpd-accessible="true"]{font-size:112.5%;scroll-behavior:auto}
 html[data-rgpd-accessible="true"] body{--red:#005a70;--red2:#00717c;--accent:#005fcc;--danger:#553c00;background:#fff!important;background-image:none!important;color:#111820!important;font-family:Verdana,Tahoma,Arial,sans-serif!important;line-height:1.78!important}
 html[data-rgpd-accessible="true"] .rgpd-global-header{--rgpd-brand:#005a70;--rgpd-brand-deep:#123b46;--rgpd-brand-soft:#e8f3f5;--rgpd-brand-line:#57727b;background:#fff!important}
 html[data-rgpd-accessible="true"] h1,html[data-rgpd-accessible="true"] h2,html[data-rgpd-accessible="true"] h3{font-family:Verdana,Tahoma,Arial,sans-serif!important;letter-spacing:.01em!important;line-height:1.3!important;text-transform:none!important}
 html[data-rgpd-accessible="true"] a{text-decoration:underline!important;text-underline-offset:.2em}
 html[data-rgpd-accessible="true"] .button,html[data-rgpd-accessible="true"] .rgpd-global-diagnostic{box-shadow:none!important}
-html[data-rgpd-accessible="true"] :focus-visible{outline:4px solid #005fcc!important;outline-offset:3px!important}
+html[data-rgpd-accessible="true"] :focus-visible{outline:4px solid #111!important;outline-offset:3px!important}
 html[data-rgpd-accessible="true"] *,html[data-rgpd-accessible="true"] *::before,html[data-rgpd-accessible="true"] *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-/* repo-factory: universal-access-icon */
-[class*="a11y-toggle"]::before,
-[class*="accessibility-toggle"]::before,
-.rgpd-global-a11y::before,
-.rgpd-a11y-floating::before{
-  content:"";
-  display:inline-block;
-  width:1.15em;
-  height:1.15em;
-  flex:0 0 1.15em;
-  margin-right:.4em;
-  vertical-align:-.18em;
-  background:#005fcc;
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='12' cy='6.2' r='1.8' fill='black'/%3E%3Cpath d='M6.7 9h10.6v2H13v2.5l3.1 5.2h-2.5L12 15.9l-1.6 2.8H7.9l3.1-5.2V11H6.7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
-  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='12' cy='6.2' r='1.8' fill='black'/%3E%3Cpath d='M6.7 9h10.6v2H13v2.5l3.1 5.2h-2.5L12 15.9l-1.6 2.8H7.9l3.1-5.2V11H6.7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-@media(max-width:520px){
-  [class*="a11y-toggle"],[class*="accessibility-toggle"],.rgpd-global-a11y,.rgpd-a11y-floating{font-size:0!important}
-  [class*="a11y-toggle"]::before,[class*="accessibility-toggle"]::before,.rgpd-global-a11y::before,.rgpd-a11y-floating::before{width:20px;height:20px;flex-basis:20px;margin:0;vertical-align:middle}
-}

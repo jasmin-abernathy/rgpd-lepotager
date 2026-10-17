@@ -64,6 +64,9 @@ function rgpd_render_header(string $ref = 'direct', string $active = 'home', boo
                     <small>organisation × numérique</small>
                 </span>
             </a>
+            <button class="rgpd-global-a11y" type="button" data-rgpd-accessibility-toggle aria-pressed="false" aria-label="Activer la version accessible" title="Activer la version accessible">
+                <svg class="rgpd-a11y-eye" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
         </div>
     </div>
 
@@ -109,7 +112,6 @@ function rgpd_render_header(string $ref = 'direct', string $active = 'home', boo
                 <a href="<?= rgpd_header_e($methodHref) ?>">Méthode</a>
                 <a href="<?= rgpd_header_e($pricingHref) ?>">Tarifs</a>
                 <a<?= $active === 'comparateur' ? ' class="active" aria-current="page"' : '' ?> href="<?= rgpd_header_e($compareHref) ?>">Comparateur</a>
-                <button class="rgpd-global-a11y" type="button" data-rgpd-accessibility-toggle aria-pressed="false">Version accessible</button>
             </nav>
         </div>
     </div>

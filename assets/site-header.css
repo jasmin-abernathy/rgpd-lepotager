@@ -56,6 +56,8 @@
     min-height:142px;
     display:flex;
     align-items:center;
+    justify-content:space-between;
+    gap:18px;
 }
 
 .rgpd-global-home{
@@ -65,6 +67,7 @@
     color:#202522;
     text-decoration:none;
     min-width:0;
+    flex:0 1 auto;
 }
 
 .rgpd-global-mark{
@@ -381,6 +384,16 @@
     .rgpd-global-nav{
         gap:20px !important;
     }
+}
+
+/* Adaptation des titres et du logo sur les téléphones étroits. */
+@media (max-width:420px){
+    .rgpd-global-identity-row{gap:10px}
+    .rgpd-global-home{gap:9px}
+    .rgpd-global-mark,.rgpd-global-mark img{width:46px;height:46px}
+    .rgpd-global-mark{flex-basis:46px}
+    .rgpd-global-title-wrap strong{font-size:clamp(1.2rem,6.3vw,1.7rem);letter-spacing:-.045em}
+    .rgpd-global-title-wrap small{font-size:.65rem;letter-spacing:0}
 }
 
 @media (prefers-reduced-motion:reduce){

@@ -30,9 +30,9 @@ $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le P
 <title>Comparateur des tarifs RGPD — Prestadmin × Le Potager</title><meta name="description" content="Tarifs publics observés pour des prestations RGPD, avec moyennes, médianes et sources.">
 <link rel="canonical" href="https://rgpd.lepotager.org/comparateur/">
 <link rel="stylesheet" href="assets/style.css?v=stable-1746-plus">
-<link rel="stylesheet" href="../assets/site-header.css?v=1">
-<link rel="stylesheet" href="/assets/accessibility.css?v=1">
-<script defer src="/assets/accessibility.js?v=1"></script>
+<link rel="stylesheet" href="../assets/site-header.css?v=2">
+<link rel="stylesheet" href="/assets/accessibility.css?v=2">
+<script defer src="/assets/accessibility.js?v=2"></script>
 </head>
 <body class="theme-<?= htmlspecialchars($ref, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
 <?php rgpd_render_header($ref, 'comparateur', false); ?>
