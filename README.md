@@ -64,6 +64,18 @@ GitHub doit rester la source de vérité pour le **code**. Les données génér�
 - Aucun mot de passe réel ne doit être commité.
 
 
+## Parcours de réservation et visibilité de l'offre
+
+L'accueil et la carte tarifaire mettent en avant la réservation du diagnostic personnalisé à **150 €**.
+Le visiteur ouvre le même questionnaire depuis les différents boutons ; à l'étape finale il peut
+soit envoyer une demande gratuite, soit réserver avec paiement par carte. Les champs
+de facturation ne sont exigés que pour le paiement. Les autres offres demeurent sur devis.
+
+Le paiement en production dépend de la configuration privée du serveur : **ne pas déclarer
+la transaction validée de bout en bout avant un essai contrôlé sur l'hébergement**.
+La page de confidentialité décrit désormais la conservation des commandes payées et non
+payées ainsi que l'intervention de Stancer.
+
 ## Paiement ponctuel du diagnostic personnalisé
 
 Le diagnostic précédemment libellé « diagnostic humain » est désormais nommé **diagnostic personnalisé**.

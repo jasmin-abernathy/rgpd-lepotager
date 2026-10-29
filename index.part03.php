@@ -5,7 +5,7 @@
             </p>
 
             <p class="billing-note">
-                <strong>Facturation :</strong> le diagnostic personnalisé ponctuel à 150 € peut être réglé en ligne par carte via Stancer. Après confirmation, la commande est ventilée à parts égales : une facture de 75 € émise par <a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> et une facture de 75 € émise par <a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>. Pour les packs, les deux entreprises restent indépendantes et émettent chacune leur propre devis/facture. Les suivis annuels ne sont pas proposés au paiement dans ce parcours.
+                <strong>Réservation et facturation :</strong> le diagnostic personnalisé ponctuel à 150 € se réserve depuis le questionnaire, avec paiement sécurisé par carte via Stancer à la dernière étape. Vous pouvez aussi transmettre une demande sans payer. Après paiement confirmé, la commande est ventilée à parts égales : une facture de 75 € émise par <a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> et une facture de 75 € émise par <a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>. Pour les packs, les deux entreprises restent indépendantes et émettent chacune leur propre devis/facture. Les suivis annuels ne sont pas proposés au paiement dans ce parcours.
             </p>
         </div>
     </section>

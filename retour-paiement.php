@@ -87,8 +87,8 @@ $message = $details['kind'] === 'success'
       <div class="payment-meta">
         <p>Référence : <strong><?=htmlspecialchars($id, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')?></strong></p>
         <p>Prestation : <strong>Diagnostic personnalisé RGPD</strong></p>
-        <p>Montant réglé : <strong>150,00 €</strong></p>
-        <p>Répartition de facturation : <strong>75,00 € Prestadmin + 75,00 € Le Potager du Web</strong></p>
+        <p><?= $details['kind'] === 'success' ? 'Montant réglé' : 'Montant de la commande' ?> : <strong>150,00 €</strong></p>
+        <p>Répartition prévue : <strong>75,00 € Prestadmin + 75,00 € Le Potager du Web</strong></p>
       </div>
       <?php if (!empty($record['invoices']['potager']) && !empty($record['invoices']['prestadmin'])): ?>
       <div class="invoice-downloads">

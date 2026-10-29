@@ -41,6 +41,10 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
       l'adresse e-mail, le téléphone lorsqu'il est fourni et le message libre.
       Une indication d'origine commerciale (« Prestadmin », « Potager » ou « accès direct ») accompagne également
       le message afin d'identifier le canal qui a amené la demande.
+      En cas de réservation payante, l'adresse de facturation, le code postal, la ville et, le cas échéant,
+      le SIREN sont également recueillis. Un identifiant de commande et des références de paiement
+      sont conservés pour vérifier le règlement et établir les factures. Les données de carte sont saisies
+      sur la page de paiement du prestataire Stancer, et non dans ce formulaire.
     </p>
 
     <h2>Finalité</h2>
@@ -52,18 +56,23 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
     <h2>Base et durée</h2>
     <p>
       Le traitement est réalisé pour répondre à une démarche initiée par la personne et préparer, le cas échéant,
-      une relation contractuelle. Le site lui-même n'enregistre pas le contenu du formulaire dans une base de données.
+      une relation contractuelle. Une demande gratuite est transmise par e-mail sans enregistrement de son contenu
+      dans une base de données du site. Pour une réservation payante, les informations nécessaires à la commande
+      et à sa vérification sont aussi conservées dans des fichiers protégés hors de l'espace public de l'hébergement.
+      Les commandes non payées sont normalement supprimées de ce stockage après sept jours ; les commandes payées
+      et factures sont conservées selon les obligations comptables et légales applicables.
       Les échanges reçus par e-mail sont conservés au maximum deux ans à compter du dernier échange lorsqu'ils ne
       débouchent pas sur une relation contractuelle, sauf nécessité particulière ou obligation légale.
-      En cas de relation contractuelle, certaines informations peuvent être conservées plus longtemps pour les
-      obligations administratives, comptables ou juridiques applicables.
     </p>
 
     <h2>Destinataires et hébergement</h2>
     <p>
       Les destinataires sont Prestadmin et Le Potager du Web, dans la limite de leurs besoins respectifs.
-      Le site et sa messagerie sont prévus pour être hébergés chez o2switch.
-      L'hébergeur peut traiter des journaux techniques nécessaires à la sécurité et au fonctionnement de ses services.
+      Le site et sa messagerie sont hébergés chez o2switch, qui peut traiter des journaux techniques
+      nécessaires à la sécurité et au fonctionnement de ses services.
+      En cas de paiement par carte, Stancer intervient comme prestataire de paiement et traite les données
+      nécessaires à la transaction selon sa propre politique de confidentialité.
+      Les deux factures de 75 € sont établies après confirmation du paiement.
     </p>
 
     <h2>Cookies et traceurs</h2>
@@ -77,7 +86,7 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
     <p>
       Pour demander l'accès, la rectification, l'effacement ou la limitation des données vous concernant,
       ou exercer un droit d'opposition lorsqu'il est applicable, vous pouvez écrire à
-      <a href="mailto:jleveque@lepotager.org">jleveque@lepotager.org</a>.
+      <a href="mailto:contact@lepotager.org">contact@lepotager.org</a>.
       Vous pouvez également introduire une réclamation auprès de la CNIL.
     </p>
 
@@ -87,7 +96,7 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
       champ libre. Si de tels éléments sont nécessaires à une mission, un canal adapté sera convenu après le premier échange.
     </p>
 
-    <p><small>Version préparée le 17 août 2026. À relire lors de toute modification du formulaire, de l'hébergement ou des destinataires.</small></p>
+    <p><small>Version mise à jour le 29 octobre 2026. À réexaminer lors de toute évolution du paiement, du formulaire ou de l'hébergement.</small></p>
   </div>
 </main>
 </body>

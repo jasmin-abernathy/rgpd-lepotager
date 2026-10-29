@@ -83,9 +83,10 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
                     <a class="provider-link potager-link" href="https://wordpress.org/plugins/dendrila-privacy/" target="_blank" rel="noopener noreferrer">Dendrila Privacy</a> est l’extension WordPress publique utilisée pour analyser les traceurs et services tiers, aider à maintenir la documentation vie privée et, si vous l’activez, gérer le consentement. Les résultats d’audit restent dans WordPress par défaut et les recherches d’organisation externes ne partent qu’à la demande de l’administrateur. Des outils SPIP et Grav distincts restent en développement et ne sont pas présentés comme des versions de production équivalentes.
                 </p>
                 <div class="hero-actions">
-                    <a class="button button-ghost" href="#offres">Voir les tarifs</a>
+                    <button class="button js-open-diagnostic" type="button">Réserver un diagnostic personnalisé · 150 €</button>
+                    <a class="button button-ghost" href="#offres">Voir toutes les offres</a>
                 </div>
-                <p class="microcopy">Le diagnostic rapide est accessible directement depuis le header · environ 3 minutes · aucune donnée envoyée avant votre validation finale.</p>
+                <p class="microcopy">Quelques questions pour préparer votre diagnostic · paiement sécurisé à la dernière étape, ou simple demande gratuite sans paiement. Aucune donnée transmise avant votre validation.</p>
             </div>
 
             <aside class="origin-card dual-card" aria-label="Répartition de l'accompagnement">

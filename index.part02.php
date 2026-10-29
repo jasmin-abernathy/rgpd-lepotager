@@ -77,8 +77,10 @@
                         <li>Vérification rapide du site et des flux</li>
                         <li>Plan d'action priorisé</li>
                         <li>Orientation vers le bon pack si nécessaire</li>
+                        <li>Paiement unique en ligne, sans abonnement</li>
                     </ul>
-                    <button class="text-button js-open-diagnostic" type="button">Réserver le diagnostic personnalisé →</button>
+                    <button class="text-button js-open-diagnostic" type="button">Commencer le diagnostic et réserver à 150 € →</button>
+                    <p class="microcopy">Répondez au questionnaire, puis choisissez entre une demande sans paiement et la réservation par carte via Stancer.</p>
                 </article>
 
                 <article class="price-card featured">
