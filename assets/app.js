@@ -426,12 +426,12 @@
 
     try {
       // Ne transmettre que l'e-mail et les données du questionnaire en parcours gratuit.
-      const data = new FormData(form);
+      const payload = new FormData(form);
       ['name', 'company', 'phone', 'billing_address', 'billing_postcode',
-        'billing_city', 'billing_siren', 'message', 'privacy_ack'].forEach(name => data.delete(name));
+        'billing_city', 'billing_siren', 'message', 'privacy_ack'].forEach(name => payload.delete(name));
       const response = await fetch(form.action, {
         method: 'POST',
-        body: data,
+        body: payload,
         headers: {'X-Requested-With': 'XMLHttpRequest'}
       });
 
