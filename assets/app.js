@@ -62,7 +62,9 @@
       ? 'Ce diagnostic est payant (150 € en une fois). Le questionnaire de conseil n’est pas nécessaire pour le réserver.'
       : 'Envoyez une demande gratuite pour échanger sur le forfait conseillé, ou réservez en option le diagnostic personnalisé à 150 €.';
     form.querySelectorAll('[data-payment-required]').forEach(field => {
-      field.required = direct;
+      // Invoice details are validated only for the paid action, not for free inquiries.
+      field.required = false;
+      field.setAttribute('aria-required', direct ? 'true' : 'false');
     });
     showStep(direct ? steps.length - 1 : 0);
   }
@@ -108,6 +110,8 @@
   // Permet au bouton du comparateur de revenir sur la racine et d’ouvrir directement le diagnostic.
   if (window.location.hash === '#diagnostic') {
     openModal('guide');
+  } else if (window.location.hash === '#diagnostic-direct') {
+    openModal('direct');
   }
 
   window.addEventListener('pageshow', () => {
