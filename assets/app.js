@@ -1,6 +1,7 @@
 
 (() => {
   const modal = document.getElementById('diagnosticModal');
+  const wizard = modal?.querySelector('.wizard');
   const form = document.getElementById('diagnosticForm');
   if (!modal || !form) return;
 
@@ -36,6 +37,23 @@
   let lastFocused = null;
   let journeyMode = 'guide';
   let paymentRedirecting = false;
+
+  function syncModalViewport() {
+    if (modal.hidden) return;
+    // Android/iOS: 100dvh seul ne réagit pas toujours au clavier virtuel.
+    const compact = window.matchMedia('(max-width: 700px), (max-height: 480px)').matches;
+    if (!compact || !window.visualViewport) {
+      modal.style.removeProperty('--rgpd-visual-height');
+      modal.style.removeProperty('--rgpd-visual-top');
+      return;
+    }
+    modal.style.setProperty('--rgpd-visual-height', Math.round(window.visualViewport.height) + 'px');
+    modal.style.setProperty('--rgpd-visual-top', Math.round(window.visualViewport.offsetTop) + 'px');
+  }
+
+  window.visualViewport?.addEventListener('resize', syncModalViewport);
+  window.visualViewport?.addEventListener('scroll', syncModalViewport);
+  window.addEventListener('resize', syncModalViewport);
 
   function resetPaymentActions() {
     paymentRedirecting = false;
@@ -104,12 +122,15 @@
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     startedAt.value = String(Date.now());
+    syncModalViewport();
     setJourney(mode);
     setTimeout(() => modal.querySelector('.wizard-close')?.focus(), 30);
   }
 
   function closeModal() {
     modal.hidden = true;
+    modal.style.removeProperty('--rgpd-visual-height');
+    modal.style.removeProperty('--rgpd-visual-top');
     document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
   }
@@ -174,6 +195,9 @@
     submit.hidden = direct || !finalStep;
     if (payDiagnostic) payDiagnostic.hidden = !direct || !finalStep;
     if (wizardActions) wizardActions.classList.toggle('is-final', finalStep);
+
+    // Chaque étape repart du début de la fenêtre scrollable, sans remonter la page du fond.
+    if (wizard) wizard.scrollTop = 0;
 
     if (current === steps.length - 1) {
       buildResult();

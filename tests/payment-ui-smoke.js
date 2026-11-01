@@ -9,7 +9,7 @@ assert.match(js, /payDiagnostic\.hidden\s*=\s*!direct\s*\|\|\s*!finalStep/, 'pay
 assert.match(js, /status\.textContent = 'Redirection vers le paiement sécurisé Stancer…'/, 'click must display progress');
 assert.match(js, /return paymentError\('Complétez votre adresse de facturation/, 'failed billing validation must explain why');
 assert.match(js, /HTMLFormElement\.prototype\.submit\.call\(paymentForm\)/, 'payment must use native form submission');
-assert.match(html, /assets\/app\.js\?v=7/, 'script cache version must change');
+assert.match(html, /assets\/app\.js\?v=8/, 'script cache version must change');
 console.log('Payment UI visibility, feedback, and checkout submission guards OK');
 
 const page = fs.readFileSync('index.part01.php', 'utf8');
@@ -26,7 +26,7 @@ assert.match(js, /submit\.hidden = direct \|\| !finalStep/, 'free inquiry unavai
 assert.match(js, /wizardActions\.hidden = true/, 'hide actions when payment begins');
 assert.match(js, /switchJourney\.hidden = true/, 'hide mode switch when payment begins');
 assert.match(paymentPhp, /\$journeyMode === 'direct'/, 'backend supports direct booking without fabricated questionnaire');
-assert.match(page, /assets\/style\.css\?v=5/, 'new stylesheet version busts cache');
+assert.match(page, /assets\/style\.css\?v=6/, 'new stylesheet version busts cache');
 
 const server = fs.readFileSync('contact.php', 'utf8');
 assert.match(html, /id="paidDetails" hidden/, 'paid-only fields hidden from free form');
@@ -36,3 +36,14 @@ assert.match(js, /data\.delete\(name\)/, 'only questionnaire information sent wi
 assert.match(server, /if \(!\$email\)/, 'email is the only necessary contact detail for a free inquiry');
 assert.match(server, /strlen\(\$summary\) < 20/, 'free requests require questionnaire results');
 assert.match(server, /Reply-To: ' \. \$email/, 'email-only reply-to header');
+
+const cssMobile = css.slice(css.indexOf('Mobile: modal déroulante'));
+assert.match(cssMobile, /@media \(max-width: 700px\), \(max-height: 480px\)/, 'portrait and landscape must be covered');
+assert.match(cssMobile, /overflow-y:auto/, 'mobile dialog scrolls internally');
+assert.match(cssMobile, /-webkit-overflow-scrolling:touch/, 'iOS supports touch scrolling');
+assert.match(cssMobile, /overscroll-behavior:contain/, 'mobile dialog owns scroll gestures');
+assert.match(cssMobile, /\.modal \.wizard-actions\s*\{[\s\S]*?position:sticky/, 'mobile actions remain accessible');
+assert.match(cssMobile, /\.modal \.wizard-close\s*\{[\s\S]*?position:sticky/, 'mobile close control remains accessible');
+assert.match(js, /visualViewport\?\.addEventListener\('resize', syncModalViewport\)/, 'dialog responds to keyboard height');
+assert.match(js, /wizard\.scrollTop = 0/, 'steps open from top of scroll container');
+assert.match(page, /assets\/style\.css\?v=6/, 'the corrected CSS bypasses old mobile cache');

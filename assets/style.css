@@ -290,3 +290,77 @@ body{background:var(--bg);color:var(--ink);font-family:Montserrat,Inter,ui-sans-
 .privacy-notice{max-width:70ch;color:var(--muted);font-size:.88rem;line-height:1.55;margin:1rem 0}
 .privacy-notice a{text-underline-offset:.18em}
 @media(max-width:620px){.paid-details .form-grid{grid-template-columns:minmax(0,1fr)}}
+
+/*
+ * Mobile: modal déroulante dans la fenêtre visible, y compris avec le clavier.
+ * Vaut pour l'orientation guidée ET la réservation directe (même dialogue).
+ */
+@media (max-width: 700px), (max-height: 480px) {
+  .modal:not([hidden]){
+    display:flex;
+    align-items:stretch;
+    justify-content:stretch;
+    inset:auto 0 auto 0;
+    top:var(--rgpd-visual-top,0px);
+    width:100%;
+    height:100vh;
+    height:var(--rgpd-visual-height,100dvh);
+    padding:0;
+    overflow:hidden;
+  }
+  .modal .wizard{
+    flex:1 1 auto;
+    width:100%;
+    height:100%;
+    min-width:0;
+    min-height:0;
+    max-height:100%;
+    overflow-x:hidden;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y;
+    scroll-padding-block:56px 95px;
+    border-radius:0;
+    padding:calc(12px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));
+  }
+  .modal .wizard-close{
+    position:sticky;
+    top:0;
+    right:auto;
+    float:right;
+    z-index:12;
+    display:grid;
+    place-items:center;
+    width:44px;
+    height:44px;
+    margin:-5px -5px 5px 8px;
+    padding:0;
+    border-radius:12px;
+    background:var(--paper);
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+  }
+  .modal .wizard-top{display:block;padding-right:0;min-width:0}
+  .modal .wizard-top h2{font-size:clamp(1.3rem,5vw,1.8rem);line-height:1.17}
+  .modal .wizard-counter{display:block;margin:8px 0 0}
+  .modal .wizard-journey-hint{font-size:.87rem;line-height:1.42}
+  .modal .wizard-switch{line-height:1.4}
+  .modal .progress{margin:12px 0 18px}
+  .modal .choice-grid{grid-template-columns:minmax(0,1fr);gap:9px;margin-top:14px}
+  .modal .choice span{min-height:48px;padding:11px 13px}
+  .modal .question-stack{gap:12px;margin-top:14px}
+  .modal .wizard-actions{
+    position:sticky;
+    bottom:0;
+    z-index:10;
+    margin:18px -16px -16px;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));
+    background:#f8f7f4;
+    box-shadow:0 -6px 16px rgba(24,40,29,.08);
+    border-top:1px solid var(--line);
+  }
+  .modal .wizard-actions .button{min-height:44px}
+  .modal .wizard-actions.is-final{gap:8px}
+  .modal .form-grid{grid-template-columns:minmax(0,1fr)}
+  .modal .form-grid>*{min-width:0}
+}

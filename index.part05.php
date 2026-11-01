@@ -70,6 +70,6 @@
     </section>
 </div>
 
-<script src="assets/app.js?v=7" defer></script>
+<script src="assets/app.js?v=8" defer></script>
 </body>
 </html>
