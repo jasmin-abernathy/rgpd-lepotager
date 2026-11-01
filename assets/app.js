@@ -226,24 +226,35 @@
 
   prev.addEventListener('click', () => showStep(current - 1));
 
+  function paymentError(message, field = null) {
+    status.className = 'form-status error';
+    status.textContent = message;
+    if (field) {
+      field.focus();
+      field.reportValidity?.();
+    }
+    return false;
+  }
+
   function validateFinalContact() {
-    if (!validateCurrentStep()) return false;
+    status.className = 'form-status';
+    status.textContent = '';
+    if (!validateCurrentStep()) {
+      return paymentError('Pour continuer vers Stancer, renseignez votre nom, votre e-mail et acceptez la politique de confidentialité.');
+    }
     const email = form.querySelector('[name="email"]');
     const privacy = form.querySelector('[name="privacy_ack"]');
     if (email && !email.checkValidity()) {
-      email.reportValidity();
-      return false;
+      return paymentError('Vérifiez votre adresse e-mail avant de payer.', email);
     }
     if (privacy && !privacy.checked) {
-      privacy.focus();
-      return false;
+      return paymentError('Acceptez la politique de confidentialité avant de payer.', privacy);
     }
     for (const field of form.querySelectorAll('[data-payment-required]')) {
       if (!String(field.value || '').trim()) {
         field.setCustomValidity('Ce champ est nécessaire pour établir les factures.');
-        field.reportValidity();
         field.addEventListener('input', () => field.setCustomValidity(''), {once:true});
-        return false;
+        return paymentError('Complétez votre adresse de facturation (adresse, code postal et ville) avant de payer.', field);
       }
     }
     const siren = form.querySelector('[name="billing_siren"]');
@@ -251,11 +262,13 @@
       const normalized = siren.value.replace(/\s+/g, '');
       if (!/^\d{9}$/.test(normalized)) {
         siren.setCustomValidity('Le SIREN doit contenir 9 chiffres.');
-        siren.reportValidity();
         siren.addEventListener('input', () => siren.setCustomValidity(''), {once:true});
-        return false;
+        return paymentError('Le SIREN doit contenir neuf chiffres, ou rester vide pour un particulier.', siren);
       }
       siren.value = normalized;
+    }
+    if (!startedAt.value) {
+      return paymentError('Le questionnaire a perdu son état. Fermez-le puis rouvrez-le avant de payer.');
     }
     return true;
   }
@@ -263,27 +276,37 @@
   if (payDiagnostic) {
     payDiagnostic.addEventListener('click', () => {
       if (!validateFinalContact()) return;
-      buildResult();
-      status.className = 'form-status';
-      status.textContent = 'Préparation du paiement sécurisé…';
-      payDiagnostic.disabled = true;
+      try {
+        buildResult();
+        status.className = 'form-status';
+        status.textContent = 'Redirection vers le paiement sécurisé Stancer…';
+        payDiagnostic.disabled = true;
+        payDiagnostic.setAttribute('aria-busy', 'true');
 
-      const paymentForm = document.createElement('form');
-      paymentForm.method = 'post';
-      paymentForm.action = 'paiement.php';
-      paymentForm.hidden = true;
+        const paymentForm = document.createElement('form');
+        paymentForm.method = 'post';
+        paymentForm.action = 'paiement.php';
+        paymentForm.hidden = true;
 
-      const data = new FormData(form);
-      data.set('service', 'diagnostic-personnalise');
-      for (const [name, value] of data.entries()) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = String(value);
-        paymentForm.appendChild(input);
+        const data = new FormData(form);
+        data.set('service', 'diagnostic-personnalise');
+        for (const [name, value] of data.entries()) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = name;
+          input.value = String(value);
+          paymentForm.appendChild(input);
+        }
+        document.body.appendChild(paymentForm);
+        // Call the native method explicitly in case a form control shadows "submit".
+        HTMLFormElement.prototype.submit.call(paymentForm);
+      } catch (error) {
+        console.error('Impossible de préparer la redirection Stancer.', error);
+        status.className = 'form-status error';
+        status.textContent = 'Impossible d’ouvrir le paiement. Aucun règlement n’a été effectué. Réessayez ou envoyez votre demande gratuitement.';
+        payDiagnostic.disabled = false;
+        payDiagnostic.removeAttribute('aria-busy');
       }
-      document.body.appendChild(paymentForm);
-      paymentForm.submit();
     });
   }
 

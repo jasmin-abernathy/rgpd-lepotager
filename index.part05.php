@@ -22,7 +22,7 @@
                     </label>
                     <div class="full billing-fields" aria-labelledby="billing-fields-title">
                         <strong id="billing-fields-title">Facturation · uniquement si vous payez en ligne</strong>
-                        <p>Ces informations servent à générer les deux factures de 75 € après confirmation du paiement.</p>
+                        <p>Renseignez l’adresse, le code postal et la ville avant de payer : ces champs sont facultatifs pour une demande sans règlement.</p>
                     </div>
                     <label class="full">Adresse de facturation
                         <input type="text" name="billing_address" autocomplete="street-address" maxlength="220" data-payment-required>
@@ -64,6 +64,6 @@
     </section>
 </div>
 
-<script src="assets/app.js?v=4" defer></script>
+<script src="assets/app.js?v=5" defer></script>
 </body>
 </html>

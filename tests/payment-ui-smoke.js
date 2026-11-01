@@ -1,0 +1,13 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const css = fs.readFileSync('assets/style.css', 'utf8');
+const js = fs.readFileSync('assets/app.js', 'utf8');
+const html = fs.readFileSync('index.part05.php', 'utf8');
+assert.match(css, /\[hidden\]\s*\{\s*display:\s*none\s*!important\s*\}/, 'hidden controls must stay hidden even with .button display:flex');
+assert.match(html, /id="payDiagnostic"[^>]*type="button"[^>]*hidden/, 'payment button must be initially hidden');
+assert.match(js, /payDiagnostic\.hidden\s*=\s*current\s*!==\s*steps\.length\s*-\s*1/, 'payment button must be visible on final step only');
+assert.match(js, /status\.textContent = 'Redirection vers le paiement sécurisé Stancer…'/, 'click must display progress');
+assert.match(js, /return paymentError\('Complétez votre adresse de facturation/, 'failed billing validation must explain why');
+assert.match(js, /HTMLFormElement\.prototype\.submit\.call\(paymentForm\)/, 'payment must use native form submission');
+assert.match(html, /assets\/app\.js\?v=5/, 'script cache version must change');
+console.log('Payment UI visibility, feedback, and checkout submission guards OK');

@@ -108,6 +108,7 @@ h3{font-size:1.35rem}
 .footer-grid>div:last-child{display:flex;gap:18px}
 
 /* Modal & wizard */
+[hidden]{display:none!important}
 .modal[hidden]{display:none}
 .modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px}
 .modal-backdrop{position:absolute;inset:0;background:rgba(12,18,14,.66);backdrop-filter:blur(5px)}

@@ -32,7 +32,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Validate JavaScript
-        run: node --check assets/app.js
+        run: |
+          node --check assets/app.js
+          node tests/payment-ui-smoke.js
       - name: Validate PHP
         run: find . -maxdepth 2 -type f -name '*.php' -not -path './cron/*' -print0 | xargs -0 -n1 php -l
       - name: Validate comparator code and statistical grouping
