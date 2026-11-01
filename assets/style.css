@@ -281,3 +281,12 @@ body{background:var(--bg);color:var(--ink);font-family:Montserrat,Inter,ui-sans-
   .wizard-actions.is-final .button{width:100%}
   .wizard-actions.is-final #prevStep{margin-right:0}
 }
+
+/* Étape finale : demande gratuite = une seule information, adresse e-mail. */
+.final-contact-grid{grid-template-columns:minmax(0,1fr)}
+.final-contact-grid>.full{min-width:0}
+.paid-details{min-width:0}
+.paid-details>.form-grid{margin-top:0}
+.privacy-notice{max-width:70ch;color:var(--muted);font-size:.88rem;line-height:1.55;margin:1rem 0}
+.privacy-notice a{text-underline-offset:.18em}
+@media(max-width:620px){.paid-details .form-grid{grid-template-columns:minmax(0,1fr)}}

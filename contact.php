@@ -75,15 +75,24 @@ $summary = clean((string)($_POST['summary'] ?? ''), 4500);
 $recommendation = clean((string)($_POST['recommendation'] ?? ''), 120);
 $source = strtolower(clean((string)($_POST['source'] ?? 'direct'), 30));
 $privacyAck = (string)($_POST['privacy_ack'] ?? '') === '1';
+$journeyMode = (string)($_POST['journey_mode'] ?? 'guide');
 
 $allowedSources = ['prestadmin', 'potager', 'direct'];
 if (!in_array($source, $allowedSources, true)) {
     $source = 'direct';
 }
 
-if ($name === '' || !$email || !$privacyAck) {
-    respond(422, ['ok' => false, 'message' => 'Merci de renseigner le nom, une adresse e-mail valide et de confirmer la lecture de la politique de confidentialité.']);
+if ($journeyMode !== 'guide') {
+    respond(422, ['ok' => false, 'message' => 'Ce formulaire est réservé aux demandes gratuites.']);
 }
+if (!$email) {
+    respond(422, ['ok' => false, 'message' => 'Une adresse e-mail valide est nécessaire pour transmettre la demande.']);
+}
+if (strlen($summary) < 20 || $recommendation === '') {
+    respond(422, ['ok' => false, 'message' => 'Complétez le questionnaire pour recevoir une recommandation.']);
+}
+// Le visiteur demande lui-même à être recontacté. La notice d'information
+// est visible juste avant l'envoi ; aucun consentement marketing n'est demandé.
 
 $sourceLabel = match ($source) {
     'prestadmin' => 'PRESTADMIN',
@@ -103,12 +112,13 @@ $secondary = match ($source) {
     default => $config['prestadmin_email'],
 };
 
-$subject = '[RGPD][' . $sourceLabel . '] ' . ($company !== '' ? $company : $name) . ' — ' . ($recommendation !== '' ? $recommendation : 'nouvelle demande');
+$subject = '[RGPD][Proposition][' . $sourceLabel . '] ' . $email . ' — ' . $recommendation;
 
 $body = "Nouvelle demande depuis rgpd.lepotager.org\n\n";
 $body .= "ORIGINE COMMERCIALE : {$sourceLabel}\n";
 $body .= "INTERLOCUTEUR PRINCIPAL : " . ($source === 'prestadmin' ? 'Prestadmin' : ($source === 'potager' ? 'Le Potager du Web' : 'Commun')) . "\n";
-$body .= "RECOMMANDATION DU PARCOURS : " . ($recommendation !== '' ? $recommendation : 'non calculée') . "\n\n";
+$body .= "OBJET : demande gratuite de proposition, sans acompte ni commande.\n";
+$body .= "RECOMMANDATION DU PARCOURS : " . $recommendation . "\n\n";
 $body .= "CONTACT\n";
 $body .= "Nom : {$name}\n";
 $body .= "Structure : " . ($company !== '' ? $company : '—') . "\n";
@@ -122,7 +132,7 @@ $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
     'From: ' . $config['from_name'] . ' <' . $config['from_email'] . '>',
-    'Reply-To: ' . $name . ' <' . $email . '>',
+    'Reply-To: ' . $email,
     'Cc: ' . $secondary,
     'X-Origin-Commerciale: ' . $sourceLabel,
 ];

@@ -87,7 +87,7 @@
             <p class="wizard-counter" id="wizardCounter" aria-live="polite">Étape <span id="stepNumber">1</span>/5</p>
         </div>
 
-        <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+        <div class="progress" id="wizardProgress" aria-hidden="true"><span id="progressBar"></span></div>
 
         <form id="diagnosticForm" action="contact.php" method="post" novalidate>
             <input type="hidden" name="source" value="<?= e($ref) ?>">

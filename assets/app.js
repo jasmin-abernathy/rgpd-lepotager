@@ -15,6 +15,11 @@
   const journeyModeField = document.getElementById('journeyMode');
   const journeyHint = document.getElementById('journeyHint');
   const wizardCounter = document.getElementById('wizardCounter');
+  const wizardProgress = document.getElementById('wizardProgress');
+  const paidDetails = document.getElementById('paidDetails');
+  const paidPrivacy = document.getElementById('paidPrivacy');
+  const paidNote = document.getElementById('paidNote');
+  const freePrivacyNotice = document.getElementById('freePrivacyNotice');
   const wizardTitle = document.getElementById('wizardTitle');
   const switchJourney = document.getElementById('switchJourney');
   const finalStepHeading = document.getElementById('finalStepHeading');
@@ -57,12 +62,18 @@
       ? 'Je préfère être conseillé gratuitement sur mon forfait →'
       : 'Je préfère réserver directement le diagnostic à 150 € →';
     wizardCounter.hidden = direct;
-    finalStepHeading.textContent = direct ? 'Vos coordonnées pour réserver' : 'Et maintenant, quelle suite souhaitez-vous ?';
+    if (wizardProgress) wizardProgress.hidden = direct;
+    paidDetails.hidden = !direct;
+    paidPrivacy.hidden = !direct;
+    paidNote.hidden = !direct;
+    freePrivacyNotice.hidden = direct;
+    form.querySelector('[name="name"]').required = direct;
+    form.querySelector('[name="privacy_ack"]').required = direct;
+    finalStepHeading.textContent = direct ? 'Vos coordonnées pour réserver' : 'Recevez une proposition pour votre situation';
     finalStepHelp.textContent = direct
-      ? 'Ce diagnostic est payant (150 € en une fois). Le questionnaire de conseil n’est pas nécessaire pour le réserver.'
-      : 'Envoyez une demande gratuite pour échanger sur le forfait conseillé, ou réservez en option le diagnostic personnalisé à 150 €.';
+      ? 'Ce diagnostic coûte 150 € en paiement unique. Indiquez vos coordonnées et votre facturation avant d’accéder à Stancer.'
+      : 'Votre questionnaire et sa recommandation seront joints automatiquement. Entrez simplement votre e-mail pour demander une proposition, sans acompte.';
     form.querySelectorAll('[data-payment-required]').forEach(field => {
-      // Invoice details are validated only for the paid action, not for free inquiries.
       field.required = false;
       field.setAttribute('aria-required', direct ? 'true' : 'false');
     });
@@ -161,7 +172,7 @@
     prev.hidden = direct || current === 0;
     next.hidden = direct || finalStep;
     submit.hidden = direct || !finalStep;
-    if (payDiagnostic) payDiagnostic.hidden = !finalStep;
+    if (payDiagnostic) payDiagnostic.hidden = !direct || !finalStep;
     if (wizardActions) wizardActions.classList.toggle('is-final', finalStep);
 
     if (current === steps.length - 1) {
@@ -275,12 +286,15 @@
       return;
     }
     const r = calculateRecommendation();
+    submit.textContent = r.code === 'Diagnostic personnalisé 150 €'
+      ? 'Être recontacté pour ce diagnostic · gratuit'
+      : 'Demander une proposition pour ce forfait · gratuit';
     resultCard.innerHTML = `
       <p class="eyebrow">Orientation indicative</p>
       <h3>${escapeHtml(r.title)}</h3>
       <p class="result-price">${escapeHtml(r.price)}</p>
       <p>${escapeHtml(r.text)}</p>
-      <small>Cette orientation n'est pas une conclusion de conformité : elle sert seulement à préparer l'échange.</small>
+      <small>Cette orientation n'est pas une conclusion de conformité. Vous pouvez transmettre les réponses ci-dessus pour recevoir une proposition, sans payer d’acompte.</small>
     `;
     recommendationField.value = r.code;
     summaryField.value = buildSummary();
@@ -371,6 +385,9 @@
         const data = new FormData(form);
         data.set('service', 'diagnostic-personnalise');
         data.set('journey_mode', journeyMode);
+        if (journeyMode === 'direct') {
+          ['cms', 'tools[]', 'register', 'retention', 'processors', 'trackers', 'forms_info'].forEach(name => data.delete(name));
+        }
         for (const [name, value] of data.entries()) {
           const input = document.createElement('input');
           input.type = 'hidden';
@@ -395,15 +412,26 @@
     e.preventDefault();
     if (journeyMode !== 'guide' || current !== steps.length - 1) return;
     if (!validateCurrentStep()) return;
-
+    const email = form.querySelector('[name="email"]');
+    if (!email || !email.checkValidity()) {
+      status.className = 'form-status error';
+      status.textContent = 'Indiquez une adresse e-mail valide pour recevoir une proposition.';
+      email?.reportValidity();
+      return;
+    }
+    buildResult();
     status.className = 'form-status';
-    status.textContent = 'Envoi en cours…';
+    status.textContent = 'Transmission de vos réponses et de la recommandation…';
     submit.disabled = true;
 
     try {
+      // Ne transmettre que l'e-mail et les données du questionnaire en parcours gratuit.
+      const data = new FormData(form);
+      ['name', 'company', 'phone', 'billing_address', 'billing_postcode',
+        'billing_city', 'billing_siren', 'message', 'privacy_ack'].forEach(name => data.delete(name));
       const response = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: data,
         headers: {'X-Requested-With': 'XMLHttpRequest'}
       });
 
@@ -413,7 +441,7 @@
       }
 
       status.className = 'form-status success';
-      status.textContent = 'Merci. Votre demande a bien été transmise.';
+      status.textContent = 'Merci ! Votre adresse et les réponses du questionnaire ont été transmises pour préparer une proposition. Aucun paiement effectué.';
       submit.hidden = true;
       if (payDiagnostic) payDiagnostic.hidden = true;
       prev.hidden = true;
