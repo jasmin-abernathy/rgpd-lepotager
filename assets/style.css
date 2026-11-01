@@ -267,3 +267,17 @@ body{background:var(--bg);color:var(--ink);font-family:Montserrat,Inter,ui-sans-
 .invoice-downloads p{margin:0;color:var(--muted);font-size:.9rem}
 .invoice-downloads .button{width:fit-content}
 .invoice-pending{margin:18px 0;padding:12px 14px;border-left:4px solid var(--admin-red);background:#f5f4f0;border-radius:10px;color:var(--muted)}
+
+/* Parcours d'orientation ou réservation directe : pas de boutons fantômes. */
+[hidden]{display:none!important}
+.wizard-journey-hint{color:var(--muted);font-size:.94rem;margin:.45rem 0 .35rem;max-width:56ch}
+.wizard-switch{font-size:.88rem;text-decoration:underline;text-underline-offset:.2em;margin:.15rem 0}
+.wizard-actions.is-final{justify-content:flex-end;align-items:center;flex-wrap:wrap}
+.wizard-actions.is-final #prevStep{margin-right:auto}
+.wizard-actions.is-final #payDiagnostic{font-weight:850}
+@media(max-width:620px){
+  .wizard-top{flex-wrap:wrap}
+  .wizard-actions.is-final{display:flex;flex-direction:column-reverse;gap:.7rem}
+  .wizard-actions.is-final .button{width:100%}
+  .wizard-actions.is-final #prevStep{margin-right:0}
+}

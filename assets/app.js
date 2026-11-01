@@ -11,6 +11,14 @@
   const prev = document.getElementById('prevStep');
   const submit = document.getElementById('submitForm');
   const payDiagnostic = document.getElementById('payDiagnostic');
+  const wizardActions = document.getElementById('wizardActions');
+  const journeyModeField = document.getElementById('journeyMode');
+  const journeyHint = document.getElementById('journeyHint');
+  const wizardCounter = document.getElementById('wizardCounter');
+  const wizardTitle = document.getElementById('wizardTitle');
+  const switchJourney = document.getElementById('switchJourney');
+  const finalStepHeading = document.getElementById('finalStepHeading');
+  const finalStepHelp = document.getElementById('finalStepHelp');
   const stepNumber = document.getElementById('stepNumber');
   const progressBar = document.getElementById('progressBar');
   const resultCard = document.getElementById('resultCard');
@@ -21,6 +29,43 @@
 
   let current = 0;
   let lastFocused = null;
+  let journeyMode = 'guide';
+  let paymentRedirecting = false;
+
+  function resetPaymentActions() {
+    paymentRedirecting = false;
+    if (wizardActions) wizardActions.hidden = false;
+    if (switchJourney) switchJourney.hidden = false;
+    if (payDiagnostic) {
+      payDiagnostic.disabled = false;
+      payDiagnostic.removeAttribute('aria-busy');
+    }
+  }
+
+  function setJourney(mode) {
+    journeyMode = mode === 'direct' ? 'direct' : 'guide';
+    journeyModeField.value = journeyMode;
+    resetPaymentActions();
+    status.className = 'form-status';
+    status.textContent = '';
+    const direct = journeyMode === 'direct';
+    wizardTitle.textContent = direct ? 'Réserver le diagnostic personnalisé à 150 €.' : 'Trouvons la formule qui correspond à votre besoin.';
+    journeyHint.textContent = direct
+      ? 'Sans questionnaire : renseignez vos coordonnées et votre facturation, puis payez en sécurité. Aucun abonnement.'
+      : 'Conseil gratuit : quatre étapes de questions, puis une demande sans paiement. Le diagnostic à 150 € reste facultatif.';
+    switchJourney.textContent = direct
+      ? 'Je préfère être conseillé gratuitement sur mon forfait →'
+      : 'Je préfère réserver directement le diagnostic à 150 € →';
+    wizardCounter.hidden = direct;
+    finalStepHeading.textContent = direct ? 'Vos coordonnées pour réserver' : 'Et maintenant, quelle suite souhaitez-vous ?';
+    finalStepHelp.textContent = direct
+      ? 'Ce diagnostic est payant (150 € en une fois). Le questionnaire de conseil n’est pas nécessaire pour le réserver.'
+      : 'Envoyez une demande gratuite pour échanger sur le forfait conseillé, ou réservez en option le diagnostic personnalisé à 150 €.';
+    form.querySelectorAll('[data-payment-required]').forEach(field => {
+      field.required = direct;
+    });
+    showStep(direct ? steps.length - 1 : 0);
+  }
 
   const focusableSelector = [
     'a[href]',
@@ -41,12 +86,12 @@
     forms_info: 'Information sous formulaires'
   };
 
-  function openModal() {
+  function openModal(mode = 'guide') {
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     startedAt.value = String(Date.now());
-    showStep(0);
+    setJourney(mode);
     setTimeout(() => modal.querySelector('.wizard-close')?.focus(), 30);
   }
 
@@ -56,13 +101,22 @@
     if (lastFocused) lastFocused.focus();
   }
 
-  openButtons.forEach(btn => btn.addEventListener('click', openModal));
+  openButtons.forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.journey || 'guide')));
+  switchJourney?.addEventListener('click', () => setJourney(journeyMode === 'direct' ? 'guide' : 'direct'));
   closeButtons.forEach(btn => btn.addEventListener('click', closeModal));
 
   // Permet au bouton du comparateur de revenir sur la racine et d’ouvrir directement le diagnostic.
   if (window.location.hash === '#diagnostic') {
-    openModal();
+    openModal('guide');
   }
+
+  window.addEventListener('pageshow', () => {
+    if (paymentRedirecting) {
+      resetPaymentActions();
+      status.className = 'form-status';
+      status.textContent = '';
+    }
+  });
 
   document.addEventListener('keydown', e => {
     if (modal.hidden) return;
@@ -98,10 +152,13 @@
     steps.forEach((step, i) => step.classList.toggle('is-active', i === current));
     stepNumber.textContent = String(current + 1);
     progressBar.style.width = `${((current + 1) / steps.length) * 100}%`;
-    prev.hidden = current === 0;
-    next.hidden = current === steps.length - 1;
-    submit.hidden = current !== steps.length - 1;
-    if (payDiagnostic) payDiagnostic.hidden = current !== steps.length - 1;
+    const direct = journeyMode === 'direct';
+    const finalStep = current === steps.length - 1;
+    prev.hidden = direct || current === 0;
+    next.hidden = direct || finalStep;
+    submit.hidden = direct || !finalStep;
+    if (payDiagnostic) payDiagnostic.hidden = !finalStep;
+    if (wizardActions) wizardActions.classList.toggle('is-final', finalStep);
 
     if (current === steps.length - 1) {
       buildResult();
@@ -201,6 +258,18 @@
   }
 
   function buildResult() {
+    if (journeyMode === 'direct') {
+      resultCard.innerHTML = `
+        <p class="eyebrow">Réservation directe · sans questionnaire</p>
+        <h3>Diagnostic personnalisé RGPD</h3>
+        <p class="result-price">150 € · paiement unique</p>
+        <p>Vous réservez un état des lieux avec Prestadmin et Le Potager du Web, sans devoir choisir un forfait maintenant.</p>
+        <small>Le paiement ouvre une réservation, pas une certification de conformité.</small>
+      `;
+      recommendationField.value = 'Diagnostic personnalisé 150 €';
+      summaryField.value = 'Réservation directe du diagnostic personnalisé RGPD à 150 € ; questionnaire non rempli.';
+      return;
+    }
     const r = calculateRecommendation();
     resultCard.innerHTML = `
       <p class="eyebrow">Orientation indicative</p>
@@ -220,11 +289,14 @@
   }
 
   next.addEventListener('click', () => {
+    if (journeyMode !== 'guide' || current === steps.length - 1) return;
     if (!validateCurrentStep()) return;
     showStep(current + 1);
   });
 
-  prev.addEventListener('click', () => showStep(current - 1));
+  prev.addEventListener('click', () => {
+    if (journeyMode === 'guide' && current > 0) showStep(current - 1);
+  });
 
   function paymentError(message, field = null) {
     status.className = 'form-status error';
@@ -275,13 +347,17 @@
 
   if (payDiagnostic) {
     payDiagnostic.addEventListener('click', () => {
+      if (paymentRedirecting || current !== steps.length - 1) return;
       if (!validateFinalContact()) return;
       try {
         buildResult();
         status.className = 'form-status';
         status.textContent = 'Redirection vers le paiement sécurisé Stancer…';
+        paymentRedirecting = true;
         payDiagnostic.disabled = true;
         payDiagnostic.setAttribute('aria-busy', 'true');
+        if (wizardActions) wizardActions.hidden = true;
+        if (switchJourney) switchJourney.hidden = true;
 
         const paymentForm = document.createElement('form');
         paymentForm.method = 'post';
@@ -290,6 +366,7 @@
 
         const data = new FormData(form);
         data.set('service', 'diagnostic-personnalise');
+        data.set('journey_mode', journeyMode);
         for (const [name, value] of data.entries()) {
           const input = document.createElement('input');
           input.type = 'hidden';
@@ -304,14 +381,15 @@
         console.error('Impossible de préparer la redirection Stancer.', error);
         status.className = 'form-status error';
         status.textContent = 'Impossible d’ouvrir le paiement. Aucun règlement n’a été effectué. Réessayez ou envoyez votre demande gratuitement.';
-        payDiagnostic.disabled = false;
-        payDiagnostic.removeAttribute('aria-busy');
+        resetPaymentActions();
+        if (switchJourney) switchJourney.hidden = false;
       }
     });
   }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (journeyMode !== 'guide' || current !== steps.length - 1) return;
     if (!validateCurrentStep()) return;
 
     status.className = 'form-status';
@@ -335,6 +413,7 @@
       submit.hidden = true;
       if (payDiagnostic) payDiagnostic.hidden = true;
       prev.hidden = true;
+      switchJourney.hidden = true;
 
       setTimeout(() => {
         form.reset();

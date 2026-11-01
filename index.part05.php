@@ -2,9 +2,9 @@
             <section class="wizard-step" data-step="5">
                 <div id="resultCard" class="result-card" aria-live="polite"></div>
 
-                <h3>Vous voulez qu'on regarde cela avec vous ?</h3>
-                <p class="question-help">
-                    Les réponses ci-dessus seront jointes à votre demande. Elles ne sont pas enregistrées dans une base de données du site.
+                <h3 id="finalStepHeading">Vous voulez qu'on regarde cela avec vous ?</h3>
+                <p class="question-help" id="finalStepHelp">
+                    Vous pouvez envoyer gratuitement vos réponses et demander un échange, ou réserver le diagnostic personnalisé à 150 €. Seul ce dernier déclenche un paiement.
                 </p>
 
                 <div class="form-grid">
@@ -54,16 +54,16 @@
                 <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
             </section>
 
-            <div class="wizard-actions">
+            <div class="wizard-actions" id="wizardActions">
                 <button class="button button-ghost" id="prevStep" type="button" hidden>Retour</button>
                 <button class="button" id="nextStep" type="button">Continuer</button>
-                <button class="button button-ghost" id="submitForm" type="submit" hidden>Envoyer ma demande</button>
+                <button class="button button-ghost" id="submitForm" type="submit" hidden>Envoyer gratuitement ma demande</button>
                 <button class="button button-payment" id="payDiagnostic" type="button" hidden>Réserver et payer 150 €</button>
             </div>
         </form>
     </section>
 </div>
 
-<script src="assets/app.js?v=5" defer></script>
+<script src="assets/app.js?v=6" defer></script>
 </body>
 </html>

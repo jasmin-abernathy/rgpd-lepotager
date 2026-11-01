@@ -79,8 +79,8 @@
                         <li>Orientation vers le bon pack si nécessaire</li>
                         <li>Paiement unique en ligne, sans abonnement</li>
                     </ul>
-                    <button class="text-button js-open-diagnostic" type="button">Commencer le diagnostic et réserver à 150 € →</button>
-                    <p class="microcopy">Répondez au questionnaire, puis choisissez entre une demande sans paiement et la réservation par carte via Stancer.</p>
+                    <button class="text-button js-open-diagnostic" data-journey="direct" type="button">Réserver directement le diagnostic à 150 € →</button>
+                    <p class="microcopy">Sans questionnaire préalable : indiquez vos coordonnées et votre adresse de facturation, puis accédez au paiement sécurisé Stancer.</p>
                 </article>
 
                 <article class="price-card featured">
@@ -96,7 +96,7 @@
                         <li>SPIP et Grav : portages en développement, étudiés ou testés uniquement au cas par cas tant que leur validation de production n'est pas terminée</li>
                         <li>Suivi Essentiel possible : 310 €/an</li>
                     </ul>
-                    <button class="text-button js-open-diagnostic" type="button">Vérifier si ce pack suffit →</button>
+                    <button class="text-button js-open-diagnostic" data-journey="guide" type="button">Vérifier gratuitement si ce pack suffit →</button>
                 </article>
 
                 <article class="price-card">
@@ -111,6 +111,6 @@
                         <li>Audit technique approfondi</li>
                         <li>Suivi Renforcé possible : 540 €/an</li>
                     </ul>
-                    <button class="text-button js-open-diagnostic" type="button">Voir si mon cas le nécessite →</button>
+                    <button class="text-button js-open-diagnostic" data-journey="guide" type="button">Vérifier gratuitement si ce pack est nécessaire →</button>
                 </article>
             </div>

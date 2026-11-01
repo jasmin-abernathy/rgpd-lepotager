@@ -5,7 +5,7 @@
             </p>
 
             <p class="billing-note">
-                <strong>Réservation et facturation :</strong> le diagnostic personnalisé ponctuel à 150 € se réserve depuis le questionnaire, avec paiement sécurisé par carte via Stancer à la dernière étape. Vous pouvez aussi transmettre une demande sans payer. Après paiement confirmé, la commande est ventilée à parts égales : une facture de 75 € émise par <a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> et une facture de 75 € émise par <a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>. Pour les packs, les deux entreprises restent indépendantes et émettent chacune leur propre devis/facture. Les suivis annuels ne sont pas proposés au paiement dans ce parcours.
+                <strong>Réservation et facturation :</strong> vous pouvez demander gratuitement une orientation à partir du questionnaire ou réserver directement un diagnostic personnalisé à 150 €, avec paiement sécurisé par carte via Stancer. À la fin du questionnaire, le diagnostic payant reste facultatif. Après paiement confirmé, la commande est ventilée à parts égales : une facture de 75 € émise par <a class="provider-link admin-link" href="https://www.prestadmin57.fr" target="_blank" rel="noopener noreferrer">Prestadmin</a> et une facture de 75 € émise par <a class="provider-link potager-link" href="https://www.lepotager.org" target="_blank" rel="noopener noreferrer">Le Potager du Web</a>. Pour les packs, les deux entreprises restent indépendantes et émettent chacune leur propre devis/facture. Les suivis annuels ne sont pas proposés au paiement dans ce parcours.
             </p>
         </div>
     </section>
@@ -80,15 +80,18 @@
         <div class="wizard-top">
             <div>
                 <p class="eyebrow">Le Jardinier RGPD</p>
-                <h2 id="wizardTitle">Voyons ce qui mérite d'être vérifié.</h2>
+                <h2 id="wizardTitle">Trouvons la formule qui correspond à votre besoin.</h2>
+                <p class="wizard-journey-hint" id="journeyHint">Orientation gratuite : quatre petites étapes, puis une demande sans paiement.</p>
+                <button class="wizard-switch text-button" type="button" id="switchJourney">Réserver directement le diagnostic à 150 € →</button>
             </div>
-            <p class="wizard-counter" aria-live="polite"><span id="stepNumber">1</span>/5</p>
+            <p class="wizard-counter" id="wizardCounter" aria-live="polite">Étape <span id="stepNumber">1</span>/5</p>
         </div>
 
         <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
         <form id="diagnosticForm" action="contact.php" method="post" novalidate>
             <input type="hidden" name="source" value="<?= e($ref) ?>">
+            <input type="hidden" name="journey_mode" id="journeyMode" value="guide">
             <input type="hidden" name="recommendation" id="recommendationField" value="">
             <input type="hidden" name="summary" id="summaryField" value="">
             <input type="hidden" name="started_at" id="startedAt" value="">

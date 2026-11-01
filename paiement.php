@@ -23,6 +23,8 @@ try {
     rgpd_payment_cleanup();
 
     if ((string)($_POST['service'] ?? '') !== 'diagnostic-personnalise') throw new InvalidArgumentException('Prestation non disponible au paiement.');
+    $journeyMode = (string)($_POST['journey_mode'] ?? 'guide');
+    if (!in_array($journeyMode, ['guide', 'direct'], true)) throw new InvalidArgumentException('Parcours de réservation invalide.');
     if (trim((string)($_POST['website'] ?? '')) !== '') payment_fail('La demande n’a pas pu être validée.');
     $startedAt = (int)($_POST['started_at'] ?? 0);
     if ($startedAt <= 0 || ((int)(microtime(true) * 1000) - $startedAt) < 2500) throw new InvalidArgumentException('Formulaire complété trop rapidement.');
@@ -44,7 +46,13 @@ try {
     if ($name === '' || !$email || !$privacy) throw new InvalidArgumentException('Nom, e-mail et accord de confidentialité requis.');
     if ($billingAddress === '' || $billingPostcode === '' || $billingCity === '') throw new InvalidArgumentException('Adresse de facturation requise pour le paiement.');
     if ($billingSiren !== '' && !preg_match('/^\\d{9}$/', $billingSiren)) throw new InvalidArgumentException('SIREN client invalide.');
-    if (strlen($summary) < 20) throw new InvalidArgumentException('Le diagnostic doit être complété avant le paiement.');
+    if ($journeyMode === 'direct') {
+        // Aucun résultat de questionnaire n'est inventé pour un paiement direct.
+        $summary = 'Réservation directe du diagnostic personnalisé RGPD à 150 € ; questionnaire non rempli.';
+        $recommendation = 'Diagnostic personnalisé 150 €';
+    } elseif (strlen($summary) < 20) {
+        throw new InvalidArgumentException('Le questionnaire doit être complété pour ce parcours.');
+    }
     if (!in_array($source, ['prestadmin','potager','direct'], true)) $source = 'direct';
 
     $id = 'RGPD-' . gmdate('Ymd') . '-' . bin2hex(random_bytes(10));
@@ -75,6 +83,7 @@ try {
         'status' => 'payment_started',
         'amount_cents' => RGPD_PAYMENT_PRICE_CENTS,
         'service' => RGPD_PAYMENT_SERVICE,
+        'journey_mode' => $journeyMode,
         'name' => $name,
         'company' => $company,
         'email' => (string)$email,

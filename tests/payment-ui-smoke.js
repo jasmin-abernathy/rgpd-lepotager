@@ -9,5 +9,21 @@ assert.match(js, /payDiagnostic\.hidden\s*=\s*current\s*!==\s*steps\.length\s*-\
 assert.match(js, /status\.textContent = 'Redirection vers le paiement sécurisé Stancer…'/, 'click must display progress');
 assert.match(js, /return paymentError\('Complétez votre adresse de facturation/, 'failed billing validation must explain why');
 assert.match(js, /HTMLFormElement\.prototype\.submit\.call\(paymentForm\)/, 'payment must use native form submission');
-assert.match(html, /assets\/app\.js\?v=5/, 'script cache version must change');
+assert.match(html, /assets\/app\.js\?v=6/, 'script cache version must change');
 console.log('Payment UI visibility, feedback, and checkout submission guards OK');
+
+const page = fs.readFileSync('index.part01.php', 'utf8');
+const offers = fs.readFileSync('index.part02.php', 'utf8');
+const modal = fs.readFileSync('index.part03.php', 'utf8');
+const paymentPhp = fs.readFileSync('paiement.php', 'utf8');
+assert.match(page, /js-open-diagnostic" data-journey="guide"/, 'guided path on landing page');
+assert.match(page, /js-open-diagnostic" data-journey="direct"/, 'direct booking on landing page');
+assert.match(offers, /data-journey="direct"/, '150 EUR plan must open direct checkout');
+assert.match(modal, /name="journey_mode"/, 'journey mode explicitly represented in form');
+assert.match(js, /showStep\(direct \? steps\.length - 1 : 0\)/, 'direct mode skips questionnaire');
+assert.match(js, /next\.hidden = direct \|\| finalStep/, 'continue hidden on final step and direct mode');
+assert.match(js, /submit\.hidden = direct \|\| !finalStep/, 'free inquiry unavailable in direct booking');
+assert.match(js, /wizardActions\.hidden = true/, 'hide actions when payment begins');
+assert.match(js, /switchJourney\.hidden = true/, 'hide mode switch when payment begins');
+assert.match(paymentPhp, /\$journeyMode === 'direct'/, 'backend supports direct booking without fabricated questionnaire');
+assert.match(page, /assets\/style\.css\?v=5/, 'new stylesheet version busts cache');

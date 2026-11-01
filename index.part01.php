@@ -49,7 +49,7 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
     <link rel="canonical" href="https://rgpd.lepotager.org/">
     <meta name="theme-color" content="#274b3a">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/style.css?v=4">
+    <link rel="stylesheet" href="assets/style.css?v=5">
     <link rel="stylesheet" href="assets/themes.css?v=21">
     <link rel="stylesheet" href="assets/theme-contrast-fix.css?v=1">
     <link rel="stylesheet" href="assets/site-header.css?v=2">
@@ -83,10 +83,10 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
                     <a class="provider-link potager-link" href="https://wordpress.org/plugins/dendrila-privacy/" target="_blank" rel="noopener noreferrer">Dendrila Privacy</a> est l’extension WordPress publique utilisée pour analyser les traceurs et services tiers, aider à maintenir la documentation vie privée et, si vous l’activez, gérer le consentement. Les résultats d’audit restent dans WordPress par défaut et les recherches d’organisation externes ne partent qu’à la demande de l’administrateur. Des outils SPIP et Grav distincts restent en développement et ne sont pas présentés comme des versions de production équivalentes.
                 </p>
                 <div class="hero-actions">
-                    <button class="button js-open-diagnostic" type="button">Réserver un diagnostic personnalisé · 150 €</button>
-                    <a class="button button-ghost" href="#offres">Voir toutes les offres</a>
+                    <button class="button js-open-diagnostic" data-journey="guide" type="button">Être conseillé sur mon forfait · gratuit</button>
+                    <button class="button button-ghost js-open-diagnostic" data-journey="direct" type="button">Réserver le diagnostic · 150 €</button>
                 </div>
-                <p class="microcopy">Quelques questions pour préparer votre diagnostic · paiement sécurisé à la dernière étape, ou simple demande gratuite sans paiement. Aucune donnée transmise avant votre validation.</p>
+                <p class="microcopy">Deux possibilités : répondre à quelques questions pour recevoir une orientation sans payer, ou réserver directement un diagnostic personnalisé à 150 €. <a href="#offres">Voir les offres et leurs contenus</a>. Aucune donnée transmise avant votre validation.</p>
             </div>
 
             <aside class="origin-card dual-card" aria-label="Répartition de l'accompagnement">
