@@ -12,6 +12,7 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Mentions légales — Prestadmin × Le Potager</title>
+  <meta name="description" content="Informations légales sur l'offre RGPD commune à Prestadmin et au Potager du Web : éditeurs, hébergement et coordonnées professionnelles.">
   <link rel="canonical" href="https://rgpd.lepotager.org/mentions-legales.php">
   <link rel="stylesheet" href="assets/style.css?v=stable-20260820">
   <link rel="stylesheet" href="assets/themes.css?v=stable-20260820">
