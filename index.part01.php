@@ -44,8 +44,12 @@ header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RGPD au propre — Prestadmin × Le Potager du Web</title>
-    <meta name="description" content="Un diagnostic court pour identifier ce qui mérite d'être vérifié côté organisation, documents, site web, formulaires et traceurs. Offre commune Prestadmin × Le Potager du Web.">
+    <title>Diagnostic RGPD pour TPE, PME et associations — Prestadmin × Le Potager</title>
+    <meta name="description" content="Diagnostic et accompagnement RGPD pour TPE, PME et associations : organisation, documents, formulaires et traceurs. Prestadmin × Le Potager du Web.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Diagnostic RGPD pour les petites structures">
+    <meta property="og:description" content="Faites le point sur vos obligations RGPD : organisation, site web, formulaires et traceurs avec Prestadmin et Le Potager du Web.">
+    <meta property="og:url" content="https://rgpd.lepotager.org/">
     <link rel="canonical" href="https://rgpd.lepotager.org/">
     <meta name="theme-color" content="#274b3a">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
