@@ -27,7 +27,11 @@ $q = $ref === 'commun' ? '' : '?ref=' . rawurlencode($ref);
 $themeLabel = $ref === 'prestadmin' ? 'Prestadmin' : ($ref === 'potager' ? 'Le Potager' : 'Commun');
 ?>
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Comparateur des tarifs RGPD — Prestadmin × Le Potager</title><meta name="description" content="Tarifs publics observés pour des prestations RGPD, avec moyennes, médianes et sources.">
+<title>Comparateur des tarifs RGPD — Prestadmin × Le Potager</title><meta name="description" content="Comparez les tarifs publics des prestations RGPD : fourchettes de prix, moyennes, médianes, méthodologie et sources consultables.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Comparateur des tarifs RGPD — Prestadmin × Le Potager">
+<meta property="og:description" content="Tarifs publics observés, fourchettes, moyennes, médianes et sources pour comparer les prestations RGPD.">
+<meta property="og:url" content="https://rgpd.lepotager.org/comparateur/">
 <link rel="canonical" href="https://rgpd.lepotager.org/comparateur/">
 <link rel="stylesheet" href="assets/style.css?v=grouped-dpo-1">
 <link rel="stylesheet" href="../assets/site-header.css?v=2">
