@@ -55,6 +55,38 @@
         </div>
     </section>
 
+    <section id="cas-concrets" class="section" aria-labelledby="cas-concrets-titre">
+        <div class="shell">
+            <p class="eyebrow">Par où commencer ?</p>
+            <h2 id="cas-concrets-titre">Le RGPD au quotidien : quatre situations concrètes.</h2>
+            <p>Une petite structure n'a pas besoin d'une usine à procédures. Elle doit surtout savoir quelles données elle collecte, pourquoi, qui y accède et combien de temps elles restent utiles. Voici des exemples de vérifications que nous pouvons préparer avec vous, selon votre activité.</p>
+            <div class="steps">
+                <article>
+                    <span>01</span>
+                    <h3>Une association qui prend des inscriptions</h3>
+                    <p>Un formulaire d'adhésion ou d'atelier recueille des coordonnées : identifier les informations réellement nécessaires, expliquer leur usage, limiter les accès des bénévoles et prévoir une durée de conservation adaptée.</p>
+                </article>
+                <article>
+                    <span>02</span>
+                    <h3>Un artisan qui reçoit des demandes de devis</h3>
+                    <p>Les messages et coordonnées clients passent par le site, la messagerie et parfois un outil de facturation. Nous repérons ces étapes, les prestataires impliqués et les informations à communiquer aux personnes concernées.</p>
+                </article>
+                <article>
+                    <span>03</span>
+                    <h3>Une TPE qui utilise WordPress</h3>
+                    <p>Formulaires, vidéos intégrées, extensions et statistiques peuvent faire intervenir des services tiers ou des traceurs. Nous distinguons les cookies nécessaires de ceux qui demandent un choix préalable et vérifions les réglages réellement actifs.</p>
+                </article>
+                <article>
+                    <span>04</span>
+                    <h3>Une petite équipe qui partage des fichiers</h3>
+                    <p>Tableurs, comptes communs, accès d'anciens salariés et sauvegardes méritent parfois plus d'attention qu'une bannière cookies. Nous aidons à organiser les responsabilités, les droits d'accès et les corrections prioritaires.</p>
+                </article>
+            </div>
+            <p>Pour aller plus loin, la <a href="https://www.cnil.fr/fr/appliquer-le-rgpd-dans-une-tpe-ou-pme-les-questionsreponses-de-la-cnil" target="_blank" rel="noopener noreferrer">CNIL répond aux questions des TPE et PME</a>, propose un <a href="https://www.cnil.fr/fr/RGPD-le-registre-des-activites-de-traitement" target="_blank" rel="noopener noreferrer">modèle de registre</a> et détaille les <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies/FAQ" target="_blank" rel="noopener noreferrer">règles relatives aux traceurs</a>. Ces ressources publiques restent accessibles sans prestation payante.</p>
+            <p><a class="text-button" href="#offres">Voir les niveaux d'accompagnement proposés →</a></p>
+        </div>
+    </section>
+
     <section id="offres" class="section section-soft">
         <div class="shell">
             <p class="eyebrow">Les offres</p>
